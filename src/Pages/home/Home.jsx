@@ -93,18 +93,18 @@ const Home = () => {
           animate="visible"
           className="flex flex-col max-w-xl text-black"
         >
-          <motion.h1 variants={itemVariants} className="text-4xl font-thin text-black md:text-5xl mb-2">
+          <motion.h1 variants={itemVariants} className="text-5xl font-regular text-black md:text-5xl mb-2">
             The Future of outdoor Advertising is here!
           </motion.h1>
-          <motion.h1 variants={itemVariants} className="text-4xl font-thin text-black md:text-5xl mb-2">
+          <motion.h1 variants={itemVariants} className="text-5xl font-regular text-black md:text-5xl mb-2">
             3D LED billboard truck For Your
           </motion.h1>
 
           <motion.div
             variants={itemVariants}
-            className="relative inline-flex items-center border border-white rounded-full h-[50px] px-3 w-full"
+            className="relative inline-flex items-center border border-black rounded-full h-[50px] px-3 w-full"
           >
-            <span className="text-3xl md:text-5xl pr-4 font-thin">
+            <span className="text-3xl md:text-5xl pr-4 font-regular">
               <WordRotate
                 words={[
                   "Jewellery showroom",
@@ -134,14 +134,15 @@ const Home = () => {
             className="mt-6"
           >
             <Link to="/routes">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.98 }}
-                className="flex items-center gap-2 px-6 py-3 bg-yellow-400 text-black font-bold rounded-full hover:bg-yellow-500 transition-all duration-300"
-              >
-                Explore routes
-                <ArrowUpRight className="w-5 h-5" />
-              </motion.button>
+            <motion.button
+  whileHover={{ scale: 1.05 }}
+  whileTap={{ scale: 0.98 }}
+  className="flex items-center gap-2 px-6 py-3 bg-[#f4cc08] text-black font-bold rounded-2xl shadow-[8px_8px_12px_rgba(0,0,0,0.15),_-4px_-4px_12px_rgba(255,255,255,0.4)] hover:shadow-[2px_2px_8px_rgba(0,0,0,0.2),_-2px_-2px_8px_rgba(255,255,255,0.5)] transition-all duration-300"
+>
+  Explore routes
+  <ArrowUpRight className="w-5 h-5" />
+</motion.button>
+
             </Link>
           </motion.div>
         </motion.div>
@@ -154,7 +155,7 @@ const Home = () => {
           <h2 className="text-sm md:text-lg font-semibold uppercase tracking-wide mb-4 text-black">
             Our Services
           </h2>
-          <p className="text-lg md:text-xl mb-6 text-gray-300">
+          <p className="text-lg md:text-xl mb-6 text-black">
             Call us your partner in creativity. Want to know the full scope of what we offer?
           </p>
           <Link to="/services">

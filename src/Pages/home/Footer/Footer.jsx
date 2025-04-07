@@ -57,7 +57,7 @@ const Footer = () => {
       initial="hidden"
       animate={controls}
       variants={footerVariants}
-      className="relative text-white py-12 mb-0"
+      className="relative text-black py-12 mb-0"
     >
       {/* Particles Background */}
       <div className="absolute inset-0">
@@ -99,13 +99,13 @@ const Footer = () => {
             },
           ].map((section, index) => (
             <motion.div key={index} variants={footerVariants} className="text-center md:text-left">
-              <h3 className="text-xl font-semibold mb-4 text-white">{section.title}</h3>
+              <h3 className="text-xl font-semibold mb-4 text-black">{section.title}</h3>
               <ul className="space-y-2">
                 {section.links.map((link, i) => (
                   <motion.li
                     key={i}
                     whileHover={{ scale: 1.1 }}
-                    className="cursor-pointer hover:text-blue-500 transition-all duration-300 text-white"
+                    className="cursor-pointer hover:text-blue-500 transition-all duration-300 text-black"
                   >
                     {section.routeLinks ? <Link to={section.routeLinks[i] || "#"}>{link}</Link> : link}
                   </motion.li>
@@ -116,8 +116,8 @@ const Footer = () => {
 
           {/* Contact Us */}
           <motion.div variants={footerVariants} className="text-center md:text-left">
-            <h3 className="text-xl font-semibold mb-4 text-white">Contact Us</h3>
-            <ul className="space-y-2 text-white">
+            <h3 className="text-xl font-semibold mb-4 text-black">Contact Us</h3>
+            <ul className="space-y-2 text-black">
               <li className="hover:text-blue-500 transition-all duration-300">info@adchariot.in</li>
               <li>
                 <a href="tel:+917732900099" className="hover:text-blue-500 transition-all duration-300">
@@ -144,14 +144,14 @@ const Footer = () => {
                 whileHover={{ scale: 1.2, rotate: 5 }}
                 className="cursor-pointer transition-all duration-300"
               >
-                <Icon className="w-6 h-6 text-white" />
+                <Icon className="w-6 h-6 text-black" />
               </motion.a>
             ))}
           </div>
         </motion.div>
 
         {/* Footer Bottom */}
-        <motion.div variants={footerVariants} className="text-center text-white mt-8">
+        <motion.div variants={footerVariants} className="text-center text-black mt-8">
           © {new Date().getFullYear()} Ad Chariot. All rights reserved. <br />
           Designed and Developed by <a href="https://premhagaragi.netlify.app/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">@ AD Chariot</a>
         </motion.div>

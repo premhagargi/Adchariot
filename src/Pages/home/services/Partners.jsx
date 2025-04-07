@@ -31,11 +31,11 @@ const OurPartners = () => {
   return (     
     <div className="p-6 bg-transparent rounded-lg mt-10">       
       <h2 className="text-3xl font-bold text-center mb-3">
-        <span className="text-white">Trusted</span> 
-        <span className="text-white"> Partnerships</span>
+        <span className="text-black">Trusted</span> 
+        <span className="text-black"> Partnerships</span>
       </h2>
       
-      <p className="text-gray-300 text-center max-w-2xl mx-auto mb-10">
+      <p className="text-black text-center max-w-2xl mx-auto mb-10">
         Collaborating with industry leaders to deliver cutting-edge advertising solutions. 
         Our strategic partnerships enhance our capabilities and expand your brand's reach.
       </p>

@@ -1,10 +1,80 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { TypeAnimation } from 'react-type-animation';
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import OurPartners from "../services/Partners";
+import { AnimatePresence } from "framer-motion";
+import { useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
+const MilestoneSlider = ({ milestones }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const nextSlide = () =>
+    setCurrentIndex((prev) => (prev + 1) % milestones.length);
+  const prevSlide = () =>
+    setCurrentIndex((prev) =>
+      prev === 0 ? milestones.length - 1 : prev - 1
+    );
+
+  const fadeVariants = {
+    initial: { opacity: 0, y: 15 },
+    animate: { opacity: 1, y: 0 },
+    exit: { opacity: 0, y: -30 },
+  };
+
+  const milestone = milestones[currentIndex];
+
+  return (
+    <div className="relative w-full max-w-6xl mx-auto overflow-hidden py-12mt-10">
+      <div className="relative flex items-center justify-center">
+        {/* Left Arrow */}
+        <button
+          onClick={prevSlide}
+          className="absolute left-4 z-10 bg-white/80 hover:bg-white text-black p-2 rounded-full shadow-md"
+        >
+          <ChevronLeft />
+        </button>
+
+        {/* Right Arrow */}
+        <button
+          onClick={nextSlide}
+          className="absolute right-4 z-10 bg-white/80 hover:bg-white text-black p-2 rounded-full shadow-md"
+        >
+          <ChevronRight />
+        </button>
+
+        {/* Slide Content */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={milestone.id}
+            variants={fadeVariants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            transition={{ duration: 0.3 }}
+            className={`flex flex-col ${
+              currentIndex % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+            } items-center gap-8 md:gap-16 w-full`}
+          >
+            <div className="w-full md:w-1/2">
+              <div className="relative overflow-hidden">
+                <img
+                  src={milestone.image}
+                  alt={milestone.title}
+                  className="w-full h-[600px] object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+              </div>
+            </div>
+          </motion.div>
+        </AnimatePresence>
+      </div>
+    </div>
+  );
+};
 const AboutUs = () => {
   const { scrollYProgress } = useScroll();
   const yPos = useTransform(scrollYProgress, [0, 1], ['0%', '30%']);
@@ -46,7 +116,10 @@ const AboutUs = () => {
       image: "Images/IMG_3843.JPG"
     },
   ];
-
+  const imageVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+  };
   return (
     <div className="min-h-screen bg-transparent overflow-x-hidden">
       {/* Hero Section */}
@@ -96,7 +169,7 @@ const AboutUs = () => {
             ]}
             wrapper="p"
             speed={0.1}
-            className="text-lg sm:text-xl md:text-2xl text-white font-light leading-relaxed"
+            className="text-lg sm:text-xl md:text-2xl text-black font-light leading-relaxed"
             cursor={true}
             repeat={Infinity}
           />
@@ -171,7 +244,7 @@ const AboutUs = () => {
               <motion.img
                 src="Images/omkar2.png"
                 alt="Founder"
-                className="w-full h-[400px] md:h-[600px] object-cover shadow-xl transform group-hover:rotate-1 transition-all duration-500"
+                className="w-full h-[600px] md:h-[600px] object-cover shadow-xl transform group-hover:rotate-1 transition-all duration-500"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent rounded-lg" />
             </motion.div>
@@ -187,10 +260,10 @@ const AboutUs = () => {
               <h3 className="text-3xl sm:text-4xl font-bold">
                 <span className="text-[#ffcc00]">Founder</span>
               </h3>
-              <p className="text-base text-white sm:text-xl leading-relaxed border-l-4 border-[#ffcc00] pl-4">
+              <p className="text-base text-black sm:text-xl leading-relaxed border-l-4 border-[#ffcc00] pl-4">
               Omkkaar Matth, a leading Civil Engineer and contractor in Belagavi, is the driving force behind AD Chariot, an innovative platform revolutionizing outdoor advertising with mobile 3D LED billboard trucks. His expertise in civil engineering and construction, combined with a deep passion for art, social media, and technology, has enabled him to blend creativity with innovation to redefine brand visibility.
               </p>
-              <p className="text-base text-white sm:text-xl leading-relaxed border-l-4 border-[#ffcc00] pl-4">
+              <p className="text-base text-black sm:text-xl leading-relaxed border-l-4 border-[#ffcc00] pl-4">
               With a commitment to delivering high-impact, geo-targeted advertising solutions, Omkkaar ensures that AD Chariot stays at the forefront of mobile advertising, offering brands unparalleled reach and engagement. His leadership and forward-thinking approach continue to position AD Chariot as a game-changer in the industry, transforming the way brands connect with their audiences.              </p>
             </motion.div>
           </div>
@@ -198,65 +271,21 @@ const AboutUs = () => {
       </section>
 
       {/* Journey Section */}
-      <section className="py-20 relative">
+      <section className="py-20 relative mt-[100px]">
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 1 }}
           className="container mx-auto px-4"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
-            <span className="text-white">Our </span>
+          {/* <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
+            <span className="text-black">Our </span>
             <span className="text-[#ffcc00]">Journey</span>
-          </h2>
+          </h2> */}
 
           <div className="space-y-32">
-            {milestones.map((milestone, index) => (
-              <motion.div
-                key={milestone.id}
-                initial={{ opacity: 0, y: 100 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.2 }}
-                viewport={{ once: true, margin: "-100px" }}
-                className={`flex flex-col ${
-                  index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-                } items-center gap-8 md:gap-16`}
-              >
-                <div className="w-full md:w-1/2">
-                  <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ duration: 0.3 }}
-                    className="relative overflow-hidden rounded-lg shadow-xl"
-                  >
-                    <img
-                      src={milestone.image}
-                      alt={milestone.title}
-                      className="w-full h-[300px] md:h-[400px] object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                  </motion.div>
-                </div>
+          <MilestoneSlider milestones={milestones} />
 
-                <div className="w-full md:w-1/2 text-center md:text-left">
-                  <motion.div
-                    initial={{ opacity: 0, x: index % 2 === 0 ? 50 : -50 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5, delay: 0.3 }}
-                    className="space-y-4"
-                  >
-                    <span className="text-[#ffcc00] text-sm font-medium">
-                      {milestone.date}
-                    </span>
-                    <h3 className="text-2xl md:text-3xl font-bold text-white">
-                      {milestone.title}
-                    </h3>
-                    <p className="text-gray-300 text-lg">
-                      {milestone.description}
-                    </p>
-                  </motion.div>
-                </div>
-              </motion.div>
-            ))}
           </div>
         </motion.div>
       </section>
@@ -294,7 +323,7 @@ const AboutUs = () => {
           </motion.div>
           
           <motion.p
-            className="text-base sm:text-xl text-gray-300 mb-8 max-w-2xl mx-auto"
+            className="text-base sm:text-xl text-black mb-8 max-w-2xl mx-auto"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true, amount: 0.2 }}
@@ -312,7 +341,7 @@ const AboutUs = () => {
             }}
             whileTap={{ scale: 0.95 }}
             viewport={{ once: true, amount: 0.2 }}
-            className="inline-block px-8 sm:px-12 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold bg-black text-white border-2 border-black hover:border-[#ffcc00]"
+            className="inline-block px-8 sm:px-12 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold bg-black text-black border-2 border-black hover:border-[#ffcc00]"
           >
             <Link to="/contact">Start Your Campaign</Link>
           </motion.div>

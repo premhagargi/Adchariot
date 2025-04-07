@@ -14,10 +14,21 @@ import BelgaumMap from './Pages/home/maps/BelgaumMap';
 const AppContent = () => {
   const location = useLocation();
 
+  const getBackgroundColor = () => {
+    if (location.pathname === "/services") {
+      return "#bd410c";
+    }
+    if (location.pathname === "/contact") {
+      return "#f5f2d6";
+    }
+    return "#f4cc08";
+  };
+  
+
   return (
-    <div 
+    <div
       className="min-h-screen transition-all duration-1000"
-      style={{ backgroundColor: '#f4cc08' }}
+      style={{ backgroundColor: getBackgroundColor() }}
     >
       <Navbar />
       <Routes>
@@ -31,6 +42,7 @@ const AppContent = () => {
     </div>
   );
 };
+
 
 const App = () => {
   return (

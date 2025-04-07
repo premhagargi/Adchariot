@@ -57,37 +57,32 @@ const Navbar = () => {
         }`}
       >
         <div className="px-4 py-6 transition-[height] duration-500 ease-in-out overflow-hidden">
-          <div className="max-w-7xl mx-auto relative flex items-center justify-between">
-            {/* Left section (Menu Button) */}
-            <div className="flex items-center space-x-1 w-1/3">
-              <button
-                className="p-1 rounded-full transition-colors flex items-center justify-center z-50"
-                onClick={() => setIsMenuOpen((prev) => !prev)}
-              >
-                <div className={`hamburger-menu ${isMenuOpen ? "open" : ""}`}>
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                </div>
-              </button>
-            </div>
+        <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
+  {/* Left section (Hamburger Menu) */}
+  <div className="flex items-center">
+    <button
+      className="p-1 rounded-full transition-colors flex items-center justify-center z-50"
+      onClick={() => setIsMenuOpen((prev) => !prev)}
+    >
+      <div className={`hamburger-menu ${isMenuOpen ? "open" : ""}`}>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </button>
+  </div>
 
-            {/* Center section (Fixed Logo) */}
-            <div className="absolute left-1/2 transform -translate-x-1/2">
-              <div className="w-40 h-30 flex items-center justify-center overflow-hidden">
-                <Link to="/">
-                  <img
-                    src="Images/Adobe Express - file.png"
-                    alt="Logo"
-                    className="object-contain"
-                  />
-                </Link>
-              </div>
-            </div>
-
-            {/* Right section (Empty placeholder for alignment) */}
-            <div className="flex items-center space-x-6 w-1/3 justify-end"></div>
-          </div>
+  {/* Right section (Logo) */}
+  <div className="flex items-center justify-end">
+    <Link to="/">
+      <img
+        src="Images/Adobe Express - file.png"
+        alt="Logo"
+        className="object-contain w-20 h-auto" // smaller logo
+      />
+    </Link>
+  </div>
+</div>
 
           {/* Menu Content */}
 <div
@@ -96,7 +91,7 @@ const Navbar = () => {
   }`}
   style={{ pointerEvents: isMenuOpen ? 'auto' : 'none' }}
 >
-<ul className="text-black text-5xl space-y-6 text-center">
+<ul className="text-black text-4xl space-y-6 text-center">
   <li>
     <Link
       to="/"

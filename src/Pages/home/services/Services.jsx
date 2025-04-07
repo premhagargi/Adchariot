@@ -1,18 +1,56 @@
 /* eslint-disable react/prop-types */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, ChevronUp } from 'lucide-react';
+import { ChevronDown, ChevronUp, Plus, Minus } from 'lucide-react';
 import { TextAnimate } from "../../../Components/magicui/text-animate";
 import CallToAction from './CTA';
 
 const ServicesComponent = () => {
   const [expandedIds, setExpandedIds] = useState({});
   const [isLoaded, setIsLoaded] = useState(false);
+  const [activeWordIndex, setActiveWordIndex] = useState(-1);
+  const [showServices, setShowServices] = useState(false);
+  const [fadeOutComplete, setFadeOutComplete] = useState(false);
+  
+  const headingWords = ["services", "we", "offer"];
+  const animationTimerRef = useRef(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    const timer = setTimeout(() => setIsLoaded(true), 100);
-    return () => clearTimeout(timer);
+    const loadTimer = setTimeout(() => setIsLoaded(true), 100);
+    
+    // Show all words initially
+    setActiveWordIndex(-1);
+    
+    // Start the sequential word fade-out animation after 2 seconds
+    const startAnimationTimer = setTimeout(() => {
+      let currentIndex = 0;
+      
+      // Function to handle fading out words one by one
+      const fadeOutNextWord = () => {
+        if (currentIndex < headingWords.length) {
+          setActiveWordIndex(currentIndex);
+          currentIndex++;
+          animationTimerRef.current = setTimeout(fadeOutNextWord, 200); // Time between words fading
+        } else {
+          // All words have faded out
+          setTimeout(() => {
+            setFadeOutComplete(true);
+            setTimeout(() => setShowServices(true), 150);
+          }, 200); // Short delay after last word fades
+        }
+      };
+      
+      fadeOutNextWord();
+    }, 2000); // Initial delay before animation starts
+    
+    return () => {
+      clearTimeout(loadTimer);
+      clearTimeout(startAnimationTimer);
+      if (animationTimerRef.current) {
+        clearTimeout(animationTimerRef.current);
+      }
+    };
   }, []);
 
   const services = [
@@ -35,10 +73,14 @@ const ServicesComponent = () => {
 
   const ServiceItem = ({ service }) => (
     <div className="border-t-2 border-white">
-      <div className="py-3 md:py-5 flex justify-between items-center cursor-pointer" onClick={() => toggleExpand(service.id)}>
+      <div className="py-3 md:py-5 h-[82px] flex justify-between items-center cursor-pointer" onClick={() => toggleExpand(service.id)}>
         <h2 className="text-lg md:text-3xl font-medium tracking-tight">{service.title}</h2>
-        <div className="rounded-full border border-gray-400 p-1 md:p-2">
-          {expandedIds[service.id] ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+        <div className=" p-1 md:p-2">
+        {expandedIds[service.id] ? (
+  <Minus size={20} />
+) : (
+  <Plus size={20} />
+)}
         </div>
       </div>
       
@@ -62,50 +104,91 @@ const ServicesComponent = () => {
   );
 
   if (!isLoaded) {
-    return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
+    return <div className="min-h-screen flex items-center justify-center"></div>;
   }
 
   return (
-    <div className="bg-transparent backdrop-blur-md text-white min-h-screen py-6 md:py-12 px-3 md:px-8">
-      <div className="container mx-auto max-w-6xl mb-8 md:mb-10">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-          <h1 className="text-3xl md:text-7xl font-bold mb-4 md:mb-6 tracking-tight text-left md:text-left">
-            Services we offer
-          </h1>
-          <p className="text-base md:text-2xl mb-2 md:mb-3 font-light text-left md:text-left">
-            Comprehensive digital marketing and creative solutions built on customized strategy.
-          </p>
-          <p className="text-base md:text-2xl mb-8 md:mb-12 font-light text-left md:text-left">
-            As your partners in creativity, we accelerate your growth through our expertise in:
-          </p>
-        </motion.div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 md:gap-x-8">
-          <div>
-            {services.filter(service => leftColumnIds.includes(service.id)).map((service, index) => (
-              <motion.div key={service.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 + index * 0.1, duration: 0.5 }}>
-                <ServiceItem service={service} />   
-              </motion.div>
-            ))}
-          </div>
-          
-          <div>
-            {services.filter(service => rightColumnIds.includes(service.id)).map((service, index) => (
-              <motion.div key={service.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 + index * 0.1, duration: 0.5 }}>
-                <ServiceItem service={service} />
-              </motion.div>
-            ))}
-          </div>
-        </div>
+    <div className="bg-transparent backdrop-blur-md text-[#f5f2d6] min-h-screen py-2 md:py-4 px-3 md:px-8">
+      <div className="container mx-auto max-w-6xl h-full">
+      {!fadeOutComplete && (
+  <div className="flex items-center h-screen pt-0">
+    <div className="w-full mt-0 md:mt-0" style={{ marginTop: "-15vh" }}>
+      <div
+        className="text-7xl md:text-8xl tracking-tight text-left flex flex-wrap"
+        style={{ color: "#f5f2d6" }}
+      >
+        {headingWords.map((word, index) => (
+          <motion.span
+            key={index}
+            className="mr-5 inline-block"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{
+              opacity: activeWordIndex >= 0
+                ? activeWordIndex >= index
+                  ? 0
+                  : 1
+                : 1,
+              y: 0
+            }}
+            transition={{
+              duration: 0.5,
+              delay: 0.2 * index
+            }}
+          >
+            {word}
+          </motion.span>
+        ))}
       </div>
+    </div>
+  </div>
+)}
 
-      <div className="relative flex w-full flex-col items-center justify-center overflow-hidden px-3 md:px-10 mt-16 md:mt-20 mb-16 md:mb-20">
-        <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-background"></div>
-        <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-background"></div>
-      </div>
 
-      <div className="px-3 md:px-8">
-        <CallToAction />
+        {showServices && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            className="mb-8 md:mb-10"
+          >
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 md:gap-x-8">
+              <div>
+                {services.filter(service => leftColumnIds.includes(service.id)).map((service, index) => (
+                  <motion.div 
+                    key={service.id} 
+                    initial={{ opacity: 0, y: 20 }} 
+                    animate={{ opacity: 1, y: 0 }} 
+                    transition={{ delay: 0.1 * index, duration: 0.5 }}
+                  >
+                    <ServiceItem service={service} />   
+                  </motion.div>
+                ))}
+              </div>
+              
+              <div>
+                {services.filter(service => rightColumnIds.includes(service.id)).map((service, index) => (
+                  <motion.div 
+                    key={service.id} 
+                    initial={{ opacity: 0, y: 20 }} 
+                    animate={{ opacity: 1, y: 0 }} 
+                    transition={{ delay: 0.1 * index, duration: 0.5 }}
+                  >
+                    <ServiceItem service={service} />
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+            
+            <div className="relative flex w-full flex-col items-center justify-center overflow-hidden px-3 md:px-10 mt-16 md:mt-20 mb-16 md:mb-20">
+              <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-background"></div>
+              <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-background"></div>
+            </div>
+
+            <div className="px-3 md:px-8">
+              <CallToAction />
+            </div>
+          </motion.div>
+        )}
       </div>
     </div>
   );

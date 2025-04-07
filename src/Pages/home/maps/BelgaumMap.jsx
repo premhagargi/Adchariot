@@ -151,15 +151,15 @@ const MobileBillboardRoutes = () => {
       <main className="max-w-7xl mx-auto py-8 px-4">
         {/* Intro Section */}
         <section className="mb-12 text-center">
-  <h2 className="text-2xl font-bold text-white mb-4">Belgaum's Premier Mobile Billboard Routes</h2>
-  <p className="max-w-3xl mx-auto text-white">
+  <h2 className="text-2xl font-bold text-black mb-4">Belgaum's Premier Mobile Billboard Routes</h2>
+  <p className="max-w-3xl mx-auto text-black">
     Reach your target audience effectively across Belgaum with our strategically planned 3D mobile billboard routes.
   </p>
 </section>
         
         {/* Featured Routes */}
         <section className="mb-12">
-  <h3 className="text-xl font-semibold text-white mb-6 border-b pb-2">Featured Routes</h3>
+  <h3 className="text-xl font-semibold text-black mb-6 border-b pb-2">Featured Routes</h3>
 
   <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
   {routes.map((route, index) => (
@@ -182,12 +182,12 @@ const MobileBillboardRoutes = () => {
       {selectedRoute === index && (
         <div className="bg-transparent p-4 text-sm transition-all duration-500 ease-in-out">
           <div className="flex justify-between">
-            <span className="text-white">Visibility</span>
-            <span className="font-medium text-white">{route.visibility}</span>
+            <span className="text-black">Visibility</span>
+            <span className="font-medium text-black">{route.visibility}</span>
           </div>
           <div className="flex justify-between mt-1">
-            <span className="text-white">Est. Daily Reach</span>
-            <span className="font-medium text-white">{route.estimatedReach}</span>
+            <span className="text-black">Est. Daily Reach</span>
+            <span className="font-medium text-black">{route.estimatedReach}</span>
           </div>
           <div className="mt-4 route-map-container"> 
             <RouteMap route={route} />
