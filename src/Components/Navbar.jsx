@@ -47,16 +47,16 @@ const Navbar = () => {
     <div className="relative">
       {/* Background Overlay */}
       <div
-  className={`fixed inset-0 flex flex-col items-start justify-center z-45 transition-transform duration-500 ${
-    isMenuOpen ? "translate-y-0 visible" : "translate-y-full invisible"
-  }`}
-  style={{ 
-    pointerEvents: isMenuOpen ? 'auto' : 'none',
-    background: '#bd410c', // Terra cotta/rust color
-    padding: '0 2rem'
-  }}
->
-</div>
+        className={`fixed inset-0 flex flex-col items-start justify-center z-45 transition-transform duration-500 ${
+          isMenuOpen ? "translate-y-0 visible" : "translate-y-full invisible"
+        }`}
+        style={{ 
+          pointerEvents: isMenuOpen ? 'auto' : 'none',
+          background: '#bd410c', // Terra cotta/rust color
+          padding: '0 2rem'
+        }}
+      >
+      </div>
 
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-opacity duration-300 ${
@@ -93,7 +93,7 @@ const Navbar = () => {
 
           {/* Menu Content */}
           <div
-            className={`fixed inset-0 flex flex-col items-start justify-center z-45 transition-opacity duration-500 ${
+            className={`fixed inset-0 flex flex-col items-start pt-16 justify-center z-45 transition-opacity duration-500 ${
               isMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"
             }`}
             style={{ 
@@ -111,8 +111,7 @@ const Navbar = () => {
               </button>
             </div>
             
-            {/* <div className="text-2xl mb-4 font-light">outpost</div> */}
-            
+            {/* Navigation Menu - Moved up by adjusting container padding and margin */}
             <ul className="text-black space-y-1 text-left w-full">
               {[
                 { to: "/", label: "HOME", delay: 0.1 },
@@ -142,38 +141,35 @@ const Navbar = () => {
               ))}
             </ul>
             
-            {/* Contact Info */}
-  {/* Contact Info */}
-<div
-  className={`absolute bottom-16 left-8 text-black text-sm transition-all duration-500 ${
-    isMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-5"
-  } delay-200`}
->
-  <div>INFO@ADCHARIOT.COM</div>
-  <div>+91 773 290 0099</div>
-</div>
+            {/* Contact Info - Adjusted position upward */}
+            <div
+              className={`absolute bottom-32 left-8 text-black text-sm transition-all duration-500 ${
+                isMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-5"
+              } delay-200`}
+            >
+              <div>INFO@ADCHARIOT.COM</div>
+              <div>+91 773 290 0099</div>
+            </div>
 
-{/* Social Icons */}
-<div
-  className={`absolute bottom-8 left-8 flex space-x-4 transition-all duration-500 ${
-    isMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-5"
-  } delay-500`}
->
-  <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
-    <Facebook size={24} className="text-black hover:text-[#f4cc08] transition-colors" />
-  </a>
-  <a href="https://www.instagram.com/adchariot.in/" target="_blank" rel="noopener noreferrer">
-    <Instagram size={24} className="text-black hover:text-[#f4cc08] transition-colors" />
-  </a>
-  <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-    <Twitter size={24} className="text-black hover:text-[#f4cc08] transition-colors" />
-  </a>
-  <a href="mailto:info@adchariot.com">
-    <Mail size={24} className="text-black hover:text-[#f4cc08] transition-colors" />
-  </a>
-</div>
-
-            
+            {/* Social Icons - Adjusted position upward */}
+            <div
+              className={`absolute bottom-24 left-8 flex space-x-4 transition-all duration-500 ${
+                isMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-5"
+              } delay-500`}
+            >
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+                <Facebook size={24} className="text-black hover:text-[#f4cc08] transition-colors" />
+              </a>
+              <a href="https://www.instagram.com/adchariot.in/" target="_blank" rel="noopener noreferrer">
+                <Instagram size={24} className="text-black hover:text-[#f4cc08] transition-colors" />
+              </a>
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+                <Twitter size={24} className="text-black hover:text-[#f4cc08] transition-colors" />
+              </a>
+              <a href="mailto:info@adchariot.com">
+                <Mail size={24} className="text-black hover:text-[#f4cc08] transition-colors" />
+              </a>
+            </div>
           </div>
         </div>
       </nav>

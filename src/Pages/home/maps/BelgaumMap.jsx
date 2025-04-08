@@ -6,6 +6,7 @@ import "leaflet-routing-machine";
 import "leaflet-routing-machine/dist/leaflet-routing-machine.css";
 import { gsap } from "gsap";
 import CallToAction from "../services/CTA";
+import { motion } from "framer-motion";
 
 const MobileBillboardRoutes = () => {
   const [selectedRoute, setSelectedRoute] = useState(null);
@@ -140,13 +141,56 @@ const MobileBillboardRoutes = () => {
     <div className="min-h-screen ">
       <main className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
         <section className="mb-16 text-center">
-          <h2 className="text-4xl font-regular text-gray-900 tracking-tight sm:text-5xl">
-            Belgaum's Elite Mobile Billboard Network
-          </h2>
-          <p className="mt-4 max-w-3xl mx-auto text-lg text-gray-600">
-            Connect with your audience through our cutting-edge 3D mobile
-            billboard routes across Belgaum.
-          </p>
+        <div className="text-center">
+      <h2 className="text-4xl font-regular text-gray-900 tracking-tight sm:text-5xl flex flex-wrap justify-center gap-2">
+        <motion.span
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0 }}
+        >
+          Belgaum's
+        </motion.span>
+        <motion.span
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+        >
+          Elite
+        </motion.span>
+        <motion.span
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          Mobile
+        </motion.span>
+      </h2>
+      <h2 className="text-4xl font-regular text-gray-900 tracking-tight sm:text-5xl flex flex-wrap justify-center gap-2">
+        <motion.span
+          initial={{ y: -20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+        >
+          Billboard
+        </motion.span>
+        <motion.span
+          initial={{ y: -20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+        >
+          Network
+        </motion.span>
+      </h2>
+    </div>
+    <motion.p
+      initial={{ opacity: 0, y: -60 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      className="mt-4 max-w-3xl mx-auto text-lg text-gray-600"
+    >
+      Connect with your audience through our cutting-edge 3D mobile
+      billboard routes across Belgaum.
+    </motion.p>
         </section>
 
         <section className="mb-16">
