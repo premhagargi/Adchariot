@@ -29,22 +29,22 @@ const AboutUs = () => {
       id: 1,
       src: "Images/IMG_3865.JPG",
       title: "The Beginning",
-      date: "January 2024",
+      date: "April 2025",
       description: "Launch of AD Chariot with our first 3D LED billboard truck"
     },
     {
       id: 2,
       src: "Images/IMG_3843.JPG",
-      title: "First Campaign",
-      date: "February 2024",
-      description: "Successfully executed our inaugural advertising campaign"
+      title: "The Beginning",
+      date: "April 2025",
+      description: "Launch of AD Chariot with our first 3D LED billboard truck"
     },
     {
       id: 3,
       src: "Images/IMG_3859.JPG",
-      title: "Growing Impact",
-      date: "March 2024",
-      description: "Expanding our reach across multiple cities"
+      title: "The Beginning",
+      date: "April 2025",
+      description: "Launch of AD Chariot with our first 3D LED billboard truck"
     }
   ];
 
