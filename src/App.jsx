@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import './App.css';
 
@@ -23,7 +23,10 @@ const AppContent = () => {
     }
     return "#f4cc08";
   };
-  
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [location.pathname]);
 
   return (
     <div
@@ -42,7 +45,6 @@ const AppContent = () => {
     </div>
   );
 };
-
 
 const App = () => {
   return (

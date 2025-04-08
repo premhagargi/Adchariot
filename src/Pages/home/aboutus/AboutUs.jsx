@@ -1,83 +1,15 @@
-/* eslint-disable react/prop-types */
-import React from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import React, { useState, useEffect } from "react";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { TypeAnimation } from 'react-type-animation';
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
 import OurPartners from "../services/Partners";
-import { AnimatePresence } from "framer-motion";
-import { useState } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { TextAnimate } from "@/Components/magicui/text-animate";
 
-const MilestoneSlider = ({ milestones }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  const nextSlide = () =>
-    setCurrentIndex((prev) => (prev + 1) % milestones.length);
-  const prevSlide = () =>
-    setCurrentIndex((prev) =>
-      prev === 0 ? milestones.length - 1 : prev - 1
-    );
-
-  const fadeVariants = {
-    initial: { opacity: 0, y: 15 },
-    animate: { opacity: 1, y: 0 },
-    exit: { opacity: 0, y: -30 },
-  };
-
-  const milestone = milestones[currentIndex];
-
-  return (
-    <div className="relative w-full max-w-6xl mx-auto overflow-hidden py-12mt-10">
-      <div className="relative flex items-center justify-center">
-        {/* Left Arrow */}
-        <button
-          onClick={prevSlide}
-          className="absolute left-4 z-10 bg-white/80 hover:bg-white text-black p-2 rounded-full shadow-md"
-        >
-          <ChevronLeft />
-        </button>
-
-        {/* Right Arrow */}
-        <button
-          onClick={nextSlide}
-          className="absolute right-4 z-10 bg-white/80 hover:bg-white text-black p-2 rounded-full shadow-md"
-        >
-          <ChevronRight />
-        </button>
-
-        {/* Slide Content */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={milestone.id}
-            variants={fadeVariants}
-            initial="initial"
-            animate="animate"
-            exit="exit"
-            transition={{ duration: 0.3 }}
-            className={`flex flex-col ${
-              currentIndex % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-            } items-center gap-8 md:gap-16 w-full`}
-          >
-            <div className="w-full md:w-1/2">
-              <div className="relative overflow-hidden">
-                <img
-                  src={milestone.image}
-                  alt={milestone.title}
-                  className="w-full h-[600px] object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-              </div>
-            </div>
-          </motion.div>
-        </AnimatePresence>
-      </div>
-    </div>
-  );
-};
 const AboutUs = () => {
   const { scrollYProgress } = useScroll();
   const yPos = useTransform(scrollYProgress, [0, 1], ['0%', '30%']);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [imagesLoaded, setImagesLoaded] = useState(false);
 
   const letterAnimation = {
     hidden: { opacity: 0, y: 20 },
@@ -92,34 +24,150 @@ const AboutUs = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  const milestones = [
+  const images = [
     {
       id: 1,
+      src: "Images/IMG_3865.JPG",
       title: "The Beginning",
       date: "January 2024",
-      description: "Launch of AD Chariot with our first 3D LED billboard truck",
-      image: "Images/IMG_3865.JPG"
+      description: "Launch of AD Chariot with our first 3D LED billboard truck"
     },
     {
       id: 2,
-
-      image: "Images/IMG_3843.JPG"
+      src: "Images/IMG_3843.JPG",
+      title: "First Campaign",
+      date: "February 2024",
+      description: "Successfully executed our inaugural advertising campaign"
     },
     {
       id: 3,
-
-      image: "Images/IMG_3859.JPG"
-    },
-    {
-      id: 3,
-
-      image: "Images/IMG_3843.JPG"
-    },
+      src: "Images/IMG_3859.JPG",
+      title: "Growing Impact",
+      date: "March 2024",
+      description: "Expanding our reach across multiple cities"
+    }
   ];
-  const imageVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+
+  // Pre-load all images at component mount
+  useEffect(() => {
+    const imagePromises = images.map(image => {
+      return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.src = image.src;
+        img.onload = resolve;
+        img.onerror = reject;
+      });
+    });
+
+    Promise.all(imagePromises)
+      .then(() => {
+        setImagesLoaded(true);
+      })
+      .catch(err => console.error("Error preloading images:", err));
+  }, []);
+
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % images.length);
   };
+
+  const prevImage = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
+
+  const JourneySection = () => (
+    <section className="py-20 relative overflow-hidden">
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+        className="container mx-auto px-4"
+      >
+        <div className="relative max-w-5xl mx-auto">
+          {/* Image Slider */}
+          <div className="relative h-[500px] overflow-hidden rounded-lg bg-gray-900">
+            {imagesLoaded ? (
+              <>
+                {/* Image Container with AnimatePresence */}
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={images[currentImageIndex].id} // Key ensures proper exit/enter animation
+                    className="absolute inset-0 w-full h-full"
+                    initial={{ opacity: 0, x: 50 }} // Enter from right
+                    animate={{ opacity: 1, x: 0 }} // Fade in and settle
+                    exit={{ opacity: 0, x: -50 }} // Exit to left
+                    transition={{ duration: 0.7, ease: "easeInOut" }}
+                  >
+                    <img
+                      src={images[currentImageIndex].src}
+                      alt={images[currentImageIndex].title}
+                      className="w-full h-full object-cover"
+                    />
+                  </motion.div>
+                </AnimatePresence>
+  
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-[1]" />
+  
+                {/* Text Content */}
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={images[currentImageIndex].id}
+                    className="absolute bottom-0 left-0 right-0 p-8 text-white z-[2]"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.7 }} // Match image duration
+                  >
+                    <span className="text-[#ffcc00] text-sm font-medium block mb-2">
+                      {images[currentImageIndex].date}
+                    </span>
+                    <h3 className="text-2xl md:text-3xl font-bold mb-2">
+                      {images[currentImageIndex].title}
+                    </h3>
+                    <p className="text-gray-200 text-lg">
+                      {images[currentImageIndex].description}
+                    </p>
+                  </motion.div>
+                </AnimatePresence>
+  
+                {/* Navigation Buttons */}
+                <button
+                  onClick={prevImage}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/75 text-white p-3 rounded-full transition-colors z-10"
+                >
+                  ←
+                </button>
+                <button
+                  onClick={nextImage}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/75 text-white p-3 rounded-full transition-colors z-10"
+                >
+                  →
+                </button>
+  
+                {/* Dots Indicator */}
+                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2 z-10">
+                  {images.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setCurrentImageIndex(index)}
+                      className={`w-2 h-2 rounded-full transition-colors ${
+                        index === currentImageIndex ? "bg-[#ffcc00]" : "bg-white/50"
+                      }`}
+                    />
+                  ))}
+                </div>
+              </>
+            ) : (
+              <div className="flex items-center justify-center w-full h-full">
+                <div className="w-12 h-12 border-4 border-[#ffcc00] border-t-transparent rounded-full animate-spin"></div>
+              </div>
+            )}
+          </div>
+        </div>
+      </motion.div>
+    </section>
+  );
+
   return (
     <div className="min-h-screen bg-transparent overflow-x-hidden">
       {/* Hero Section */}
@@ -128,52 +176,44 @@ const AboutUs = () => {
         animate="visible"
         className="h-full min-h-[600px] flex flex-col items-center justify-center text-center px-4 py-12 bg-transparent"
       >
+<motion.div
+  className="overflow-hidden mb-6 w-full"
+  initial={{ y: 100, opacity: 0 }}
+  animate={{ y: 0, opacity: 1 }}
+  transition={{ duration: 1.2, delay: 0.2 }}
+>
+  <TypeAnimation
+    sequence={[
+      'Next-Gen',
+      1000,
+      'Smart',
+      1000,
+      'Dynamic',
+      1000
+    ]}
+    wrapper="div"
+    speed={30}
+    className="text-4xl sm:text-5xl md:text-7xl font-bold px-4"
+    style={{ 
+      display: 'inline-block',
+      background: 'radial-gradient(circle, #1e3a8a 20%, #60a5fa 80%)', // New gradient: dark blue to light blue
+      WebkitBackgroundClip: 'text',
+      backgroundClip: 'text',
+      color: 'transparent'
+    }}
+    repeat={Infinity}
+  />
+</motion.div>
         <motion.div
-          className="overflow-hidden mb-6 w-full"
-          initial={{ y: 100, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 1.2, delay: 0.2 }}
-        >
-          <TypeAnimation
-            sequence={[
-              'Next-Gen',
-              1000,
-              'Smart',
-              1000,
-              'Dynamic',
-              1000
-            ]}
-            wrapper="div"
-            speed={30}
-            className="text-4xl sm:text-5xl md:text-7xl font-bold px-4"
-            style={{ 
-              display: 'inline-block',
-              background: 'radial-gradient(circle, #ffcc00 20%, #000 80%)',
-              WebkitBackgroundClip: 'text',
-              backgroundClip: 'text',
-              color: 'transparent'
-            }}
-            repeat={Infinity}
-          />
-        </motion.div>
-        <motion.div
-          className="max-w-3xl mx-auto px-4"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.8 }}
-        >
-          <TypeAnimation
-            sequence={[
-              `AD Chariot transforms outdoor advertising with mobile 3D LED billboard trucks, ensuring high-impact, geo-targeted brand promotions. Expanding beyond billboards, we also offer digital marketing and creative solutions, making us a one-stop advertising hub.`,
-              500
-            ]}
-            wrapper="p"
-            speed={0.1}
-            className="text-lg sm:text-xl md:text-2xl text-black font-light leading-relaxed"
-            cursor={true}
-            repeat={Infinity}
-          />
-        </motion.div>
+  className="max-w-3xl mx-auto px-4"
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 1 }}
+  transition={{ delay: 0.8 }}
+>
+           <TextAnimate animation="blurIn" by="word" as="p" className="text-lg md:text-xl text-gray-600 mt-4 max-w-2xl mx-auto">
+           AD Chariot transforms outdoor advertising with mobile 3D LED billboard trucks, ensuring high-impact, geo-targeted brand promotions. Expanding beyond billboards, we also offer digital marketing and creative solutions, making us a one-stop advertising hub.</TextAnimate> 
+ 
+</motion.div>
 
         <motion.div
           className="mt-8 text-center"
@@ -244,7 +284,7 @@ const AboutUs = () => {
               <motion.img
                 src="Images/omkar2.png"
                 alt="Founder"
-                className="w-full h-[600px] md:h-[600px] object-cover shadow-xl transform group-hover:rotate-1 transition-all duration-500"
+                className="w-full h-[400px] md:h-[600px] object-cover shadow-xl transform group-hover:rotate-1 transition-all duration-500"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent rounded-lg" />
             </motion.div>
@@ -260,10 +300,10 @@ const AboutUs = () => {
               <h3 className="text-3xl sm:text-4xl font-bold">
                 <span className="text-[#ffcc00]">Founder</span>
               </h3>
-              <p className="text-base text-black sm:text-xl leading-relaxed border-l-4 border-[#ffcc00] pl-4">
+              <p className="text-base text-white sm:text-xl leading-relaxed border-l-4 border-[#ffcc00] pl-4">
               Omkkaar Matth, a leading Civil Engineer and contractor in Belagavi, is the driving force behind AD Chariot, an innovative platform revolutionizing outdoor advertising with mobile 3D LED billboard trucks. His expertise in civil engineering and construction, combined with a deep passion for art, social media, and technology, has enabled him to blend creativity with innovation to redefine brand visibility.
               </p>
-              <p className="text-base text-black sm:text-xl leading-relaxed border-l-4 border-[#ffcc00] pl-4">
+              <p className="text-base text-white sm:text-xl leading-relaxed border-l-4 border-[#ffcc00] pl-4">
               With a commitment to delivering high-impact, geo-targeted advertising solutions, Omkkaar ensures that AD Chariot stays at the forefront of mobile advertising, offering brands unparalleled reach and engagement. His leadership and forward-thinking approach continue to position AD Chariot as a game-changer in the industry, transforming the way brands connect with their audiences.              </p>
             </motion.div>
           </div>
@@ -271,24 +311,7 @@ const AboutUs = () => {
       </section>
 
       {/* Journey Section */}
-      <section className="py-20 relative mt-[100px]">
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-          className="container mx-auto px-4"
-        >
-          {/* <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
-            <span className="text-black">Our </span>
-            <span className="text-[#ffcc00]">Journey</span>
-          </h2> */}
-
-          <div className="space-y-32">
-          <MilestoneSlider milestones={milestones} />
-
-          </div>
-        </motion.div>
-      </section>
+      <JourneySection />
 
       {/* Partners Section with motion */}
       <motion.div
@@ -323,7 +346,7 @@ const AboutUs = () => {
           </motion.div>
           
           <motion.p
-            className="text-base sm:text-xl text-black mb-8 max-w-2xl mx-auto"
+            className="text-base sm:text-xl text-gray-300 mb-8 max-w-2xl mx-auto"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true, amount: 0.2 }}
@@ -341,7 +364,7 @@ const AboutUs = () => {
             }}
             whileTap={{ scale: 0.95 }}
             viewport={{ once: true, amount: 0.2 }}
-            className="inline-block px-8 sm:px-12 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold bg-black text-black border-2 border-black hover:border-[#ffcc00]"
+            className="inline-block px-8 sm:px-12 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold bg-black text-white border-2 border-black hover:border-[#ffcc00]"
           >
             <Link to="/contact">Start Your Campaign</Link>
           </motion.div>
