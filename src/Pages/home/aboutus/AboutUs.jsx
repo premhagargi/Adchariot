@@ -75,7 +75,7 @@ const AboutUs = () => {
   };
 
   const JourneySection = () => (
-    <section className="py-20 relative overflow-hidden">
+    <section className="py-20 relative overflow-hidden h-[600px]">
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -267,7 +267,7 @@ const AboutUs = () => {
 
 
       {/* Founder Section */}
-      <section className="relative min-h-screen bg-transparent py-12">
+      <section className="relative min-h-screen bg-transparent py-12 mb-10">
         <motion.div 
           className="relative h-full flex items-center"
           style={{ y: yPos }}
