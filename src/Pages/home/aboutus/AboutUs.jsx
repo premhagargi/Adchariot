@@ -340,13 +340,13 @@ const AboutUs = () => {
             transition={{ duration: 0.8 }}
           >
             <span className="text-black">Ready to </span>
-            <span className="text-[#ffcc00] underline underline-offset-8">Elevate</span>
+            <span className="text-[#000] underline underline-offset-8">Elevate</span>
             <br />
             <span className="text-black">Your Brand?</span>
           </motion.div>
           
           <motion.p
-            className="text-base sm:text-xl text-gray-300 mb-8 max-w-2xl mx-auto"
+            className="text-base sm:text-xl text-gray-600 mb-8 max-w-2xl mx-auto"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true, amount: 0.2 }}
