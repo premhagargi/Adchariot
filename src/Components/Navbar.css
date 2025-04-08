@@ -1,46 +1,64 @@
+/* Navbar.css */
+
+/* Hamburger menu */
 .hamburger-menu {
-  width: 24px;
+  width: 40px;
   height: 18px;
   position: relative;
-  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .hamburger-menu span {
   display: block;
-  position: absolute;
   height: 2px;
-  width: 40px;
-  background: #000;
-  border-radius: 2px;
-  opacity: 1;
-  left: 0;
-  transform: rotate(0deg);
-  transition: .25s ease-in-out;
-}
-
-.hamburger-menu span:nth-child(1) {
-  top: 0px;
-}
-
-.hamburger-menu span:nth-child(2) {
-  top: 8px;
-}
-
-.hamburger-menu span:nth-child(3) {
-  top: 16px;
+  width: 100%;
+  background-color: #000;
+  transition: all 0.3s ease-in-out;
 }
 
 .hamburger-menu.open span:nth-child(1) {
-  top: 8px;
-  transform: rotate(135deg);
+  transform: translateY(8px) rotate(45deg);
 }
 
 .hamburger-menu.open span:nth-child(2) {
   opacity: 0;
-  left: -60px;
 }
 
 .hamburger-menu.open span:nth-child(3) {
-  top: 8px;
-  transform: rotate(-135deg);
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Text animations */
+/* Define a custom animation for the slide-up effect */
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Apply to children of TextAnimate with slideUp */
+.text-animate-slideUp > * {
+  display: block;
+  animation: slideUp 0.6s ease-out forwards;
+  opacity: 0;
+  transform: translateY(100%);
+}
+
+/* Navigation item styling */
+.text-6xl {
+  font-size: 3.75rem;
+  line-height: 0.9;
+  letter-spacing: -0.01em;
+}
+
+/* Create a clean container for the text animation */
+.overflow-hidden {
+  overflow: hidden;
 }

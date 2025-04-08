@@ -42,7 +42,7 @@ const ServicesComponent = () => {
       };
       
       fadeOutNextWord();
-    }, 2000); // Initial delay before animation starts
+    }, 1000); // Initial delay before animation starts
     
     return () => {
       clearTimeout(loadTimer);

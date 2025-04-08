@@ -24,10 +24,12 @@ export default function Contact() {
           transition={{ duration: 0.8 }}
         >
    <TextAnimate animation="blurIn" by="word" as="p" className="text-[#bd410c] text-5xl mb-3 ">
-          Reach out to us
+          REACH OUT TO US
           </TextAnimate>    
            <TextAnimate animation="blurIn" by="word" as="p" className="text-lg md:text-xl text-gray-600 mt-4 max-w-2xl mx-auto">
-   Transform your brand's visibility with modern mobile advertising solutions. Reach out today.          </TextAnimate>        <p className="text-lg md:text-xl text-gray-600 mt-4 max-w-2xl mx-auto">
+   Transform your brand's visibility with modern mobile advertising solutions. Reach out today.         
+    </TextAnimate> 
+          <p className="text-lg md:text-xl text-gray-600 mt-4 max-w-2xl mx-auto">
           </p>
         </motion.div>
 
