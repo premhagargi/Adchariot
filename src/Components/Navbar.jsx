@@ -52,7 +52,7 @@ const Navbar = () => {
         }`}
         style={{ 
           pointerEvents: isMenuOpen ? 'auto' : 'none',
-          background: '#bd410c', // Terra cotta/rust color
+          background: '#000', // Terra cotta/rust color
           padding: '0 2rem'
         }}
       >
@@ -98,21 +98,21 @@ const Navbar = () => {
             }`}
             style={{ 
               pointerEvents: isMenuOpen ? 'auto' : 'none',
-              background: '#bd410c', // Terra cotta/rust color like in the reference
+              background: '#000', // Terra cotta/rust color like in the reference
               padding: '0 2rem'
             }}
           >
             <div className="absolute top-6 right-6">
               <button 
                 onClick={() => setIsMenuOpen(false)}
-                className="text-black hover:text-white transition-colors"
+                className="text-white hover:text-white transition-colors"
               >
                 Close
               </button>
             </div>
             
             {/* Navigation Menu - Moved up by adjusting container padding and margin */}
-            <ul className="text-black space-y-1 text-left w-full">
+            <ul className="text-white space-y-1 text-left w-full">
               {[
                 { to: "/", label: "HOME", delay: 0.1 },
                 { to: "/services", label: "SERVICES", delay: 0.2 },
@@ -124,7 +124,7 @@ const Navbar = () => {
                   <Link
                     to={to}
                     className={`block text-6xl font-regular tracking-wide transition-all ${
-                      isActive(to) ? "text-white" : "text-black"
+                      isActive(to) ? "text-yellow-500" : "text-white"
                     }`}
                     onClick={() => setIsMenuOpen(false)}
                   >
@@ -143,7 +143,7 @@ const Navbar = () => {
             
             {/* Contact Info - Adjusted position upward */}
             <div
-              className={`absolute bottom-32 left-8 text-black text-sm transition-all duration-500 ${
+              className={`absolute bottom-32 left-8 text-white text-sm transition-all duration-500 ${
                 isMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-5"
               } delay-200`}
             >
@@ -158,16 +158,16 @@ const Navbar = () => {
               } delay-500`}
             >
               <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
-                <Facebook size={24} className="text-black hover:text-[#f4cc08] transition-colors" />
+                <Facebook size={24} className="text-white hover:text-[#f4cc08] transition-colors" />
               </a>
               <a href="https://www.instagram.com/adchariot.in/" target="_blank" rel="noopener noreferrer">
-                <Instagram size={24} className="text-black hover:text-[#f4cc08] transition-colors" />
+                <Instagram size={24} className="text-white hover:text-[#f4cc08] transition-colors" />
               </a>
               <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-                <Twitter size={24} className="text-black hover:text-[#f4cc08] transition-colors" />
+                <Twitter size={24} className="text-white hover:text-[#f4cc08] transition-colors" />
               </a>
               <a href="mailto:info@adchariot.com">
-                <Mail size={24} className="text-black hover:text-[#f4cc08] transition-colors" />
+                <Mail size={24} className="text-white hover:text-[#f4cc08] transition-colors" />
               </a>
             </div>
           </div>

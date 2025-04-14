@@ -21,7 +21,7 @@ const CallToAction = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
         >
-          <span className="text-black font-thin text-[36px] mb-2">Ready to elevate your advertising game ?</span>
+          <span className="text-black font-semibold text-[40px] mb-2">Ready to elevate your advertising game ?</span>
         </motion.h2>
 
         {/* Subtitle */}

@@ -33,7 +33,7 @@ const MobileBillboardRoutes = () => {
     },
 {
   "id": 2,
-  "name": "Udyambhag to Auto Nagar, Belgaum",
+  "name": "Udyambhag to Auto Nagar, Belagavi",
   "description": "Strategic route connecting the industrial manufacturing zone to the automobile commercial hub. Perfect for business-to-business advertising and automotive-related promotions.",
   "visibility": "Medium-High",
   "traffic": "Consistent throughout workday with peak business hours",
@@ -43,7 +43,7 @@ const MobileBillboardRoutes = () => {
     "coords": [15.8184, 74.4907]
   },
   "to": {
-    "name": "Auto Nagar, Belgaum",
+    "name": "Auto Nagar, Belagavi",
     "coords": [15.8356, 74.4855]
   },
   "recommendedTimes": "9:00 AM - 6:00 PM",
@@ -148,7 +148,7 @@ const MobileBillboardRoutes = () => {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0 }}
         >
-          Belgaum's
+          Belagavi's
         </motion.span>
         <motion.span
           initial={{ y: 20, opacity: 0 }}
@@ -189,7 +189,7 @@ const MobileBillboardRoutes = () => {
       className="mt-4 max-w-3xl mx-auto text-lg text-gray-600"
     >
       Connect with your audience through our cutting-edge 3D mobile
-      billboard routes across Belgaum.
+      billboard routes across Belagavi.
     </motion.p>
         </section>
 
