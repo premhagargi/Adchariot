@@ -29,7 +29,7 @@ const PartnerCard = ({ name, logo, url }) => {
 
 const OurPartners = () => {   
   return (     
-    <div className="p-6 bg-transparent rounded-lg mt-10">       
+    <div className="p-6 bg-transparent rounded-lg">       
       <h2 className="text-3xl font-bold text-center mb-3">
         <span className="text-black">Trusted</span> 
         <span className="text-black"> Partnerships</span>
