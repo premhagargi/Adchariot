@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./Navbar.css";
-import { Facebook, Instagram, Twitter, Mail } from "lucide-react";
+import { Facebook, Instagram, Mail, Linkedin } from "lucide-react";
 import { TextAnimate } from "./magicui/text-animate";
+import { SiX, SiLinkedin } from 'react-icons/si'; // From Simple Icons (official X)
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -163,12 +164,13 @@ const Navbar = () => {
               <a href="https://www.instagram.com/adchariot.in/" target="_blank" rel="noopener noreferrer">
                 <Instagram size={24} className="text-white hover:text-[#f4cc08] transition-colors" />
               </a>
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+                <SiLinkedin size={24} className="text-white hover:text-[#f4cc08] transition-colors" />
+              </a>
               <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-                <Twitter size={24} className="text-white hover:text-[#f4cc08] transition-colors" />
-              </a>
-              <a href="mailto:info@adchariot.com">
-                <Mail size={24} className="text-white hover:text-[#f4cc08] transition-colors" />
-              </a>
+  <SiX size={24} className="text-white hover:text-[#f4cc08] transition-colors" />
+</a>
+
             </div>
           </div>
         </div>

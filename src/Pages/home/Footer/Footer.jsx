@@ -1,11 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useRef } from "react";
 import { motion, useAnimation } from "framer-motion";
-import { Share2, Facebook, Twitter, Linkedin, Link2, Instagram } from "lucide-react";
+import { Share2, Facebook, Linkedin, Instagram } from "lucide-react";
 import { Link } from "react-router-dom";
-import { Particles } from "@/Components/magicui/particles";
 import { DotPattern } from "@/Components/magicui/dot-pattern";
-
+import { SiX } from 'react-icons/si'; // From Simple Icons (official X)
+import { SiInstagram, SiLinkedin } from "react-icons/si";
 const footerVariants = {
   hidden: { opacity: 0, y: 50 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
@@ -17,11 +17,10 @@ const staggerVariants = {
 };
 
 const socialIcons = [
-  { Icon: Share2, link: "#" },
   { Icon: Facebook, link: "#" },
-  { Icon: Twitter, link: "#" },
   { Icon: Linkedin, link: "https://www.linkedin.com/in/omkarmath999/" },
-  { Icon: Instagram, link: "https://www.instagram.com/adchariot.in/" },
+  { Icon: SiInstagram, link: "https://www.instagram.com/adchariot.in/" },
+  { Icon: SiX, link: "https://x.com/adchariot_in" }, // X (formerly Twitter)
 ];
 
 const Footer = () => {
