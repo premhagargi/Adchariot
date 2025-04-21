@@ -91,20 +91,20 @@ const Home = () => {
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="flex flex-col max-w-xl text-black"
+          className="flex flex-col max-w-xl lg:max-w-4xl text-black"
         >
-          <motion.h1 variants={itemVariants} className="text-5xl font-regular text-black md:text-5xl mb-2">
+          <motion.h1 variants={itemVariants} className="text-5xl font-regular lg:text-7xl text-black md:text-5xl mb-2">
             The Future of outdoor Advertising is here!
           </motion.h1>
-          <motion.h1 variants={itemVariants} className="text-5xl font-regular text-black md:text-5xl mb-2">
+          <motion.h1 variants={itemVariants} className="text-5xl font-regular lg:text-7xl text-black md:text-5xl mb-2">
             3D LED billboard truck For Your
           </motion.h1>
 
           <motion.div
             variants={itemVariants}
-            className="relative inline-flex items-center border border-black rounded-full h-[50px] px-3 w-full"
+            className="relative inline-flex items-center border border-black rounded-full h-[50px] md:h-[60px] lg:h-[60px px-3 w-full"
           >
-            <span className="text-3xl md:text-5xl pr-4 font-regular">
+            <span className="text-3xl md:text-5xl pr-4 lg:text-5xl font-regular">
               <WordRotate
                 words={[
                   "Jewellery showroom",
@@ -149,51 +149,49 @@ const Home = () => {
       </motion.div>
 
 
-      <div className="size-full max-w-lg items-center justify-center overflow-hidden pt-8 mt-5 px-6">
+      <div className="w-full px-6 pt-8 mt-5 md:max-w-5xl md:mx-auto md:flex md:flex-col md:items-center md:justify-center">
+  <div className="mt-12 space-y-6 w-full">
+    {/* Intro Text */}
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      viewport={{ once: true, amount: 0.2 }}
+      className="md:text-center"
+    >
+      <motion.h1
+        variants={itemVariants}
+        className="text-4xl font-regular text-black md:text-5xl mb-2"
+      >
+        Our MVP 3D Billboard Truck
+      </motion.h1>
+      <p className="mt-2 text-base md:text-lg text-gray-700">
+        A mobile solution for impactful advertising. Ideal for campaigns that value
+        visibility, creativity, and flexibility.
+      </p>
+    </motion.div>
 
-
-  <div className="mt-12 space-y-6">
-  {/* Intro Text */}
-  <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.8, ease: "easeOut" }}
-    viewport={{ once: true, amount: 0.2 }}
-  >
-  <motion.h1 variants={itemVariants} className="text-4xl font-regular text-black md:text-5xl mb-2">
-            Our MVP 3D Billboard Truck
-          </motion.h1><p className="mt-2 text-base text-gray-700">
-  A mobile solution for impactful advertising. Ideal for campaigns that value visibility, creativity, and flexibility.
-</p>
-
-  </motion.div>
-
-  {/* Image of the Truck */}
-  <motion.div
-    initial={{ opacity: 0, x: -120 }}
-    whileInView={{ opacity: 1, x: 0 }}
-    transition={{ duration: 0.8, ease: "easeOut" }}
-    viewport={{ once: true, amount: 0.2 }}
-    className="mt-4"
-  >
-    <img
-      src="Images/1000014890.png"
-      alt="3D Billboard LRD Truck"
-      className="w-full h-auto"
-    />
-  </motion.div>
+    {/* Image of the Truck */}
+    <motion.div
+      initial={{ opacity: 0, x: -120 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      viewport={{ once: true, amount: 0.2 }}
+      className="mt-4 md:flex md:justify-center"
+    >
+      <img
+        src="Images/1000014890.png"
+        alt="3D Billboard LRD Truck"
+        className="w-full h-auto md:max-w-3xl"
+      />
+    </motion.div>
+  </div>
 </div>
 
 
 
 
-
-
-</div>
-
-
-
-<div className="size-full max-w-lg items-center justify-center overflow-hidden pt-8 mt-20 mb-[150px] px-6">
+<div className="size-full max-w-4xl mx-auto items-center justify-center overflow-hidden pt-8 mt-20 mb-[150px] px-6 lg:flex lg:flex-col lg:items-center">
   {/* Heading */}
   <motion.div
     initial={{ opacity: 0, y: 20 }}
@@ -202,7 +200,7 @@ const Home = () => {
     viewport={{ once: true, amount: 0.2, delay: 0.5 }}
   >
     <BoxReveal boxColor={"#000"} duration={1.0}>
-      <p className="text-[1.5rem] font-semibold">
+      <p className="text-[1.5rem] lg:text-[2.5rem]">
         Our Services<span className="text-[#5046e6]">.</span>
       </p>
     </BoxReveal>
@@ -216,12 +214,12 @@ const Home = () => {
     viewport={{ once: true, amount: 0.2, delay: 0.5 }}
   >
     <BoxReveal boxColor={"#000"} duration={1.15}>
-      <div className="mt-6">
-        <p>
+      <div className="mt-6 lg:max-w-2xl lg:text-center">
+        <p className="text-base lg:text-lg">
           Call us your partner in advertising. Want to know the full scope of what we offer?
-          <span className="font-semibold text-[#5046e6]"> 3D billboard advertising</span>,
-          <span className="font-semibold text-[#5046e6]"> Marketing</span>,
-          <span className="font-semibold text-[#5046e6]"> Web Design & Development</span>,
+          <span className="text-[#5046e6]"> 3D billboard advertising</span>,
+          <span className="text-[#5046e6]"> Marketing</span>,
+          <span className="text-[#5046e6]"> Web Design & Development</span>,
           {' '}and more.
           <br />
           100% open-source, and customizable.
@@ -242,7 +240,7 @@ const Home = () => {
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.98 }}
-          className="flex items-center justify-center px-6 py-2 border border-gray-300 text-lg font-medium hover:bg-white hover:text-black transition-all duration-300 mt-3"
+          className="flex items-center justify-center px-6 py-2 border border-gray-300 text-lg hover:bg-white hover:text-black transition-all duration-300 mt-3 lg:px-8 lg:py-3 lg:text-xl"
         >
           Learn More
         </motion.button>

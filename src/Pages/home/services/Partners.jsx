@@ -40,34 +40,28 @@ const OurPartners = () => {
         Our strategic partnerships enhance our capabilities and expand your brand's reach.
       </p>
              
-      <div className="relative w-full overflow-hidden">         
-        {/* First row marquee */}         
-        <Marquee pauseOnHover className="[--duration:15s]">           
-          {partners.map((partner, index) => (             
-            <PartnerCard key={`row1-${index}`} {...partner} />           
-          ))}         
-        </Marquee>                  
-        
-        {/* Second row marquee (reverse direction) */}         
-        <Marquee reverse pauseOnHover className="mt-6 [--duration:15s]">           
-          {partners.map((partner, index) => (             
-            <PartnerCard key={`row2-${index}`} {...partner} />           
-          ))}         
-        </Marquee>                  
-        
-        {/* Gradient overlays */}         
-        <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 "></div>         
-        <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 "></div>       
-      </div>
+      <div className="relative w-full overflow-hidden px-4 md:px-8 lg:px-0 md:max-w-6xl md:mx-auto">
+  {/* First row marquee */}
+  <Marquee pauseOnHover className="[--duration:15s]">
+    {partners.map((partner, index) => (
+      <PartnerCard key={`row1-${index}`} {...partner} />
+    ))}
+  </Marquee>
 
-      {/* <div className="text-center mt-12">
-        <a href="/contact" className="text-[#ffcc00] hover:underline text-sm font-medium inline-flex items-center group">
-          Become a Partner
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1 group-hover:ml-2 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-          </svg>
-        </a>
-      </div> */}
+  {/* Second row marquee (reverse direction) */}
+  <Marquee reverse pauseOnHover className="mt-6 [--duration:15s]">
+    {partners.map((partner, index) => (
+      <PartnerCard key={`row2-${index}`} {...partner} />
+    ))}
+  </Marquee>
+
+  {/* Gradient overlays */}
+  <div className="pointer-events-none absolute inset-y-0 left-0 w-1/6 lg:bg-gradient-to-r lg:from-[#f4cc08] lg:via-[#f4cc08] lg:to-transparent"></div>
+<div className="pointer-events-none absolute inset-y-0 right-0 w-1/6 lg:bg-gradient-to-l lg:from-[#f4cc08] lg:via-[#f4cc08] lg:to-transparent"></div>
+
+</div>
+
+
     </div>   
   ); 
 };  
