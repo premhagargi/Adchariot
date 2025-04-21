@@ -27,7 +27,7 @@ const MobileBillboardRoutes = () => {
       },
       "to": {
         "name": "JNMC College, Nehru Nagar",
-        "coords": [15.8839, 74.5175]
+        "coords": [15.8836492, 74.5190503]
       },
       "recommendedTimes": "8:00 AM - 10:00 AM, 4:00 PM - 7:00 PM",
       "estimatedReach": "1,50,000+ daily viewers"
@@ -45,7 +45,7 @@ const MobileBillboardRoutes = () => {
       },
       "to": {
         "name": "Auto Nagar, Belagavi",
-        "coords": [15.8356, 74.4855]
+        "coords": [15.894545, 74.546368]
       },
       "recommendedTimes": "9:00 AM - 6:00 PM",
       "estimatedReach": "1,20,000+ daily viewers"

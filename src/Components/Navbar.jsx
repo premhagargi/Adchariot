@@ -167,7 +167,7 @@ const Navbar = () => {
               <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
                 <SiLinkedin size={24} className="text-white hover:text-[#f4cc08] transition-colors" />
               </a>
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+              <a href="https://x.com" target="_blank" rel="noopener noreferrer">
   <SiX size={24} className="text-white hover:text-[#f4cc08] transition-colors" />
 </a>
 

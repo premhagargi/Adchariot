@@ -98,13 +98,13 @@ const Footer = () => {
             },
           ].map((section, index) => (
             <motion.div key={index} variants={footerVariants} className="text-center md:text-left">
-              <h3 className="text-xl font-semibold mb-4 text-black">{section.title}</h3>
+              <h3 className="text-2xl font-semibold mb-4 text-black">{section.title}</h3>
               <ul className="space-y-2">
                 {section.links.map((link, i) => (
                   <motion.li
                     key={i}
                     whileHover={{ scale: 1.1 }}
-                    className="cursor-pointer hover:text-blue-500 transition-all duration-300 text-black"
+                    className="cursor-pointer hover:text-blue-500 transition-all duration-300 text-black text-lg"
                   >
                     {section.routeLinks ? <Link to={section.routeLinks[i] || "#"}>{link}</Link> : link}
                   </motion.li>

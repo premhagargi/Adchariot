@@ -8,7 +8,7 @@ import { useEffect, useRef } from "react";
 import { useTheme } from "next-themes";
 import { motion, useInView } from "framer-motion";
 import OurPartners from "./services/Partners";
-
+import { BoxReveal } from "@/Components/magicui/box-reveal";
 // Scroll-triggered animation component using Framer Motion
 const AnimateOnScroll = ({ children, className, delay = 0, duration = 0.8 }) => {
   const ref = useRef(null);
@@ -149,26 +149,108 @@ const Home = () => {
       </motion.div>
 
 
-      {/* Services Section */}
-      <section id="services" className="relative flex flex-col items-start justify-center h-[60vh] bg-opacity-0 text-black px-6 md:px-12">
-        <AnimateOnScroll className="max-w-xl">
-          <h2 className="text-sm md:text-lg font-semibold uppercase tracking-wide mb-4 text-black">
-            Our Services
-          </h2>
-          <p className="text-lg md:text-xl mb-6 text-black">
-            Call us your partner in creativity. Want to know the full scope of what we offer?
-          </p>
-          <Link to="/services">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.98 }}
-              className="flex items-center justify-center px-6 py-2 border border-gray-300 text-lg font-medium hover:bg-white hover:text-black transition-all duration-300"
-            >
-              Learn More
-            </motion.button>
-          </Link>
-        </AnimateOnScroll>
-      </section>
+      <div className="size-full max-w-lg items-center justify-center overflow-hidden pt-8 mt-5 px-6">
+
+
+  <div className="mt-12 space-y-6">
+  {/* Intro Text */}
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.8, ease: "easeOut" }}
+    viewport={{ once: true, amount: 0.2 }}
+  >
+  <motion.h1 variants={itemVariants} className="text-4xl font-regular text-black md:text-5xl mb-2">
+            Our MVP 3D Billboard Truck
+          </motion.h1><p className="mt-2 text-base text-gray-700">
+  A mobile solution for impactful advertising. Ideal for campaigns that value visibility, creativity, and flexibility.
+</p>
+
+  </motion.div>
+
+  {/* Image of the Truck */}
+  <motion.div
+    initial={{ opacity: 0, x: -120 }}
+    whileInView={{ opacity: 1, x: 0 }}
+    transition={{ duration: 0.8, ease: "easeOut" }}
+    viewport={{ once: true, amount: 0.2 }}
+    className="mt-4"
+  >
+    <img
+      src="Images/1000014890.png"
+      alt="3D Billboard LRD Truck"
+      className="w-full h-auto"
+    />
+  </motion.div>
+</div>
+
+
+
+
+
+
+</div>
+
+
+
+<div className="size-full max-w-lg items-center justify-center overflow-hidden pt-8 mt-20 mb-[150px] px-6">
+  {/* Heading */}
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.65, ease: "easeOut", delay: 0.3 }}
+    viewport={{ once: true, amount: 0.2, delay: 0.5 }}
+  >
+    <BoxReveal boxColor={"#000"} duration={1.0}>
+      <p className="text-[1.5rem] font-semibold">
+        Our Services<span className="text-[#5046e6]">.</span>
+      </p>
+    </BoxReveal>
+  </motion.div>
+
+  {/* Description */}
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.65, ease: "easeOut", delay: 0.3 }}
+    viewport={{ once: true, amount: 0.2, delay: 0.5 }}
+  >
+    <BoxReveal boxColor={"#000"} duration={1.15}>
+      <div className="mt-6">
+        <p>
+          Call us your partner in advertising. Want to know the full scope of what we offer?
+          <span className="font-semibold text-[#5046e6]"> 3D billboard advertising</span>,
+          <span className="font-semibold text-[#5046e6]"> Marketing</span>,
+          <span className="font-semibold text-[#5046e6]"> Web Design & Development</span>,
+          {' '}and more.
+          <br />
+          100% open-source, and customizable.
+        </p>
+      </div>
+    </BoxReveal>
+  </motion.div>
+
+  {/* Button */}
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.7, ease: "easeOut", delay: 0.3 }}
+    viewport={{ once: true, amount: 0.2, delay: 0.5 }}
+  >
+    <BoxReveal boxColor={"#000"} duration={1.25}>
+      <Link to="/services">
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.98 }}
+          className="flex items-center justify-center px-6 py-2 border border-gray-300 text-lg font-medium hover:bg-white hover:text-black transition-all duration-300 mt-3"
+        >
+          Learn More
+        </motion.button>
+      </Link>
+    </BoxReveal>
+  </motion.div>
+</div>
+
 
       {/* Floating Locations Button - NEW */}
       {/* <div className="fixed bottom-8 right-8 z-20">

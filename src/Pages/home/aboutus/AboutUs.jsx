@@ -6,7 +6,6 @@ import OurPartners from "../services/Partners";
 import { TextAnimate } from "@/Components/magicui/text-animate";
 import { useSwipeable } from "react-swipeable";
 
-
 const AboutUs = () => {
   const { scrollYProgress } = useScroll();
   const handlers = useSwipeable({
@@ -54,7 +53,7 @@ const AboutUs = () => {
       description: "Launch of AD Chariot with our first 3D LED billboard truck"
     },
     {
-      id: 3,
+      id: 4,
       src: "Images/IMG_3859.jpg",
       title: "The Beginning",
       date: "April 2025",
@@ -89,8 +88,8 @@ const AboutUs = () => {
   };
 
   const JourneySection = () => (
-<section className="relative overflow-hidden h-[600px] mt-20 flex items-center">
-<motion.div
+    <section className="relative overflow-hidden h-[450px] mt-20 flex items-center">
+      <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 1 }}
@@ -99,85 +98,83 @@ const AboutUs = () => {
         <div className="relative max-w-5xl mx-auto">
           {/* Image Slider */}
           <div
-      {...handlers}
-      className="relative h-[300px] overflow-hidden rounded-lg bg-gray-900"
-    >
-      {imagesLoaded ? (
-        <>
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={images[currentImageIndex].id}
-              className="absolute inset-0 w-full h-full flex items-center justify-center"
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -50 }}
-              transition={{ duration: 0.7, ease: "easeInOut" }}
-            >
-              <img
-                src={images[currentImageIndex].src}
-                alt={images[currentImageIndex].title}
-                className="max-w-full max-h-full object-contain"
+            {...handlers}
+            className="relative h-[300px] overflow-hidden rounded-lg bg-gray-900"
+          >
+            {imagesLoaded ? (
+              <>
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={images[currentImageIndex].id}
+                    className="absolute inset-0 w-full h-full flex items-center justify-center"
+                    initial={{ opacity: 0, x: 50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -50 }}
+                    transition={{ duration: 0.7, ease: "easeInOut" }}
+                  >
+                    <img
+                      src={images[currentImageIndex].src}
+                      alt={images[currentImageIndex].title}
+                      className="max-w-full max-h-full object-contain"
+                    />
+                  </motion.div>
+                </AnimatePresence>
+
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-[1]" />
+
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={images[currentImageIndex].id}
+                    className="absolute bottom-0 left-0 right-0 p-6 text-white z-[2]"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.7 }}
+                  >
+                    <span className="text-[#ffcc00] text-xs font-medium block mb-1">
+                      {images[currentImageIndex].date}
+                    </span>
+                    <h3 className="text-base md:text-lg font-semibold mb-1">
+                      {images[currentImageIndex].title}
+                    </h3>
+                    <p className="text-gray-200 text-sm">
+                      {images[currentImageIndex].description}
+                    </p>
+                  </motion.div>
+                </AnimatePresence>
+
+                <button
+                  onClick={prevImage}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/75 text-white text-2xl px-3 py-1 rounded-full z-10"
+                >
+                  {"<"}
+                </button>
+                <button
+                  onClick={nextImage}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/75 text-white text-2xl px-3 py-1 rounded-full z-10"
+                >
+                  {">"}
+                </button>
+              </>
+            ) : (
+              <div className="flex items-center justify-center w-full h-full">
+                <div className="w-10 h-10 border-4 border-[#ffcc00] border-t-transparent rounded-full animate-spin"></div>
+              </div>
+            )}
+          </div>
+
+          {/* Dots indicator moved outside */}
+          <div className="flex justify-center mt-4 space-x-2">
+            {images.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentImageIndex(index)}
+                className={`w-2 h-2 rounded-full transition-colors ${
+                  index === currentImageIndex ? "bg-[#ffcc00]" : "bg-white/50"
+                }`}
               />
-            </motion.div>
-          </AnimatePresence>
-
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-[1]" />
-
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={images[currentImageIndex].id}
-              className="absolute bottom-0 left-0 right-0 p-6 text-white z-[2]"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.7 }}
-            >
-            <span className="text-[#ffcc00] text-xs font-medium block mb-1">
-  {images[currentImageIndex].date}
-</span>
-<h3 className="text-base md:text-lg font-semibold mb-1">
-  {images[currentImageIndex].title}
-</h3>
-<p className="text-gray-200 text-sm">
-  {images[currentImageIndex].description}
-</p>
-
-            </motion.div>
-          </AnimatePresence>
-
-          <button
-            onClick={prevImage}
-            className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/75 text-white text-2xl px-3 py-1 rounded-full z-10"
-          >
-            {"<"}
-          </button>
-          <button
-            onClick={nextImage}
-            className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/75 text-white text-2xl px-3 py-1 rounded-full z-10"
-          >
-            {">"}
-          </button>
-        </>
-      ) : (
-        <div className="flex items-center justify-center w-full h-full">
-          <div className="w-10 h-10 border-4 border-[#ffcc00] border-t-transparent rounded-full animate-spin"></div>
-        </div>
-      )}
-    </div>
-
-    {/* Dots indicator moved outside */}
-    <div className="flex justify-center mt-4 space-x-2">
-      {images.map((_, index) => (
-        <button
-          key={index}
-          onClick={() => setCurrentImageIndex(index)}
-          className={`w-2 h-2 rounded-full transition-colors ${
-            index === currentImageIndex ? "bg-[#ffcc00]" : "bg-white/50"
-          }`}
-        />
-      ))}
-    </div>
-
+            ))}
+          </div>
         </div>
       </motion.div>
     </section>
@@ -189,46 +186,46 @@ const AboutUs = () => {
       <motion.section
         initial="hidden"
         animate="visible"
-        className="h-full min-h-[600px] flex flex-col items-center justify-center text-center px-4 py-12 bg-transparent"
+        className="h-full min-h-[600px] flex flex-col items-center justify-center text-center px-4 py-6 bg-transparent"
       >
-<motion.div
-  className="overflow-hidden mb-6 w-full"
-  initial={{ y: 100, opacity: 0 }}
-  animate={{ y: 0, opacity: 1 }}
-  transition={{ duration: 1.2, delay: 0.2 }}
->
-  <TypeAnimation
-    sequence={[
-      'Next-Gen',
-      1000,
-      'Smart',
-      1000,
-      'Dynamic',
-      1000
-    ]}
-    wrapper="div"
-    speed={30}
-    className="text-4xl sm:text-5xl md:text-7xl font-bold px-4"
-    style={{ 
-      display: 'inline-block',
-      background: 'radial-gradient(circle, #1e3a8a 20%, #60a5fa 80%)', // New gradient: dark blue to light blue
-      WebkitBackgroundClip: 'text',
-      backgroundClip: 'text',
-      color: 'transparent'
-    }}
-    repeat={Infinity}
-  />
-</motion.div>
         <motion.div
-  className="max-w-3xl mx-auto px-4"
-  initial={{ opacity: 0 }}
-  animate={{ opacity: 1 }}
-  transition={{ delay: 0.8 }}
->
-           <TextAnimate animation="blurIn" by="word" as="p" className="text-lg md:text-xl text-gray-600 mt-4 max-w-2xl mx-auto">
-           AD Chariot transforms outdoor advertising with mobile 3D LED billboard trucks, ensuring high-impact, geo-targeted brand promotions. Expanding beyond billboards, we also offer digital marketing and creative solutions, making us a one-stop advertising hub.</TextAnimate> 
- 
-</motion.div>
+          className="overflow-hidden mb-6 w-full"
+          initial={{ y: 100, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 1.2, delay: 0.2 }}
+        >
+          <TypeAnimation
+            sequence={[
+              'Next-Gen',
+              1000,
+              'Smart',
+              1000,
+              'Dynamic',
+              1000
+            ]}
+            wrapper="div"
+            speed={30}
+            className="text-5xl sm:text-7xl md:text-8xl font-bold px-4"
+            style={{ 
+              display: 'inline-block',
+              background: 'radial-gradient(circle, #1e3a8a 20%, #60a5fa 80%)',
+              WebkitBackgroundClip: 'text',
+              backgroundClip: 'text',
+              color: 'transparent'
+            }}
+            repeat={Infinity}
+          />
+        </motion.div>
+        <motion.div
+          className="max-w-3xl mx-auto px-4"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.8 }}
+        >
+          <TextAnimate animation="blurIn" by="word" as="p" className="text-xl md:text-2xl text-gray-600 mt-4 max-w-2xl mx-auto">
+            AD Chariot transforms outdoor advertising with mobile 3D LED billboard trucks, ensuring high-impact, geo-targeted brand promotions. Expanding beyond billboards, we also offer digital marketing and creative solutions, making us a one-stop advertising hub.
+          </TextAnimate> 
+        </motion.div>
 
         <motion.div
           className="mt-8 text-center"
@@ -253,7 +250,7 @@ const AboutUs = () => {
           />
         </motion.div>
         <motion.div
-          className="mt-8 animate-bounce p-5 cursor-pointer flex justify-center"
+          className="mt-3 animate-bounce  cursor-pointer flex justify-center"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 3 }}
@@ -269,7 +266,7 @@ const AboutUs = () => {
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="none"
-            stroke="#ffcc00"
+            stroke="#000"
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -279,7 +276,6 @@ const AboutUs = () => {
           </svg>
         </motion.div>
       </motion.section>
-
 
       {/* Founder Section */}
       <section className="relative min-h-screen bg-transparent py-12 mb-10">
@@ -315,11 +311,13 @@ const AboutUs = () => {
               <h3 className="text-3xl sm:text-4xl font-bold">
                 <span className="text-[#000000]">Founder</span>
               </h3>
-              <p className="text-base text-white sm:text-xl leading-relaxed border-l-2 border-[#000] pl-4">
-              Omkkaar Matth, a leading Civil Engineer and contractor in Belagavi, is the driving force behind AD Chariot, an innovative platform revolutionizing outdoor advertising with mobile 3D LED billboard trucks. His expertise in civil engineering and construction, combined with a deep passion for art, social media, and technology, has enabled him to blend creativity with innovation to redefine brand visibility.
-              </p>
-              <p className="text-base text-white sm:text-xl leading-relaxed border-l-2 border-[#000] pl-4">
-              With a commitment to delivering high-impact, geo-targeted advertising solutions, Omkkaar ensures that AD Chariot stays at the forefront of mobile advertising, offering brands unparalleled reach and engagement. His leadership and forward-thinking approach continue to position AD Chariot as a game-changer in the industry, transforming the way brands connect with their audiences.              </p>
+              <p className="text-lg text-gray-600 sm:text-xl leading-relaxed border-l-2 border-[#000] pl-4">
+  Omkkaar Matth, a renowned civil engineer and contractor from Belagavi, is the visionary behind AD Chariot—an innovative platform transforming outdoor advertising through mobile 3D LED billboard trucks. His expertise in engineering, paired with a passion for art, social media, and technology, drives a unique blend of creativity and innovation in brand promotion.
+</p>
+<p className="text-lg text-gray-600 sm:text-xl leading-relaxed border-l-2 border-[#000] pl-4">
+  Dedicated to high-impact, geo-targeted campaigns, Omkkaar’s leadership keeps AD Chariot at the cutting edge of mobile advertising, delivering exceptional reach and engagement while redefining how brands connect with their audiences.
+</p>
+
             </motion.div>
           </div>
         </motion.div>
@@ -328,13 +326,42 @@ const AboutUs = () => {
       {/* Journey Section */}
       <JourneySection />
 
+      {/* New Paragraph Section */}
+      <motion.section
+        className="container mx-auto px-4 py-6"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: false, amount: 0.2 }}
+      >
+        <div className="max-w-4xl mx-auto">
+          <p className="text-lg sm:text-lg text-gray-600 leading-relaxed border-l-2 border-[#000] pl-4">
+          AD Chariot was proudly launched by Padmashree <b>Dr. Vijay Sankeshwar, Chairman of VRL,</b> and <b>Mrs. Deepa Sidnal , MD of Vijaykant Dairy & Food Products Ltd.</b> Recognizing the potential of this innovative concept, Dr. Sankeshwar personally applauded AD Chariot’s vision and addressed the media during the launch.
+          </p>
+        </div>
+
+        <div className="max-w-4xl mx-auto pt-5">
+  <p className="text-lg sm:text-lg text-gray-600 leading-relaxed border-l-2 border-[#000] pl-4">
+    As the in-house advertising agency for Vijaykant Dairy & Food Products Ltd.,  
+    <a href="https://www.adityaamilk.com/" target="_blank" rel="noopener noreferrer" className="text-blue-600 underline">
+       {' '}Adityaa Milk
+    </a> and 
+    <a href="https://kingicecream.com/" target="_blank" rel="noopener noreferrer" className="text-blue-600 underline">
+      {' '}King Icecream
+    </a>, AD Chariot seamlessly fuses advanced technology with innovative strategy to transform both outdoor and digital advertising. We empower brands with unparalleled visibility, impactful storytelling, and meaningful audience engagement.
+  </p>
+</div>
+
+
+      </motion.section>
+
       {/* Partners Section with motion */}
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
         viewport={{ once: false, amount: 0.2 }}
-        className="mt-[150px] mb-16" // Added proper spacing
+        className="mt-[150px] mb-16"
       >
         <OurPartners />
       </motion.div>
