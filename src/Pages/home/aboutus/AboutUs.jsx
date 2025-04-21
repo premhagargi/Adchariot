@@ -98,70 +98,70 @@ const AboutUs = () => {
         <div className="relative max-w-5xl mx-auto">
           {/* Image Slider */}
           <div
-            {...handlers}
-            className="relative h-[300px] overflow-hidden rounded-lg bg-gray-900"
-          >
-            {imagesLoaded ? (
-              <>
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={images[currentImageIndex].id}
-                    className="absolute inset-0 w-full h-full flex items-center justify-center"
-                    initial={{ opacity: 0, x: 50 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -50 }}
-                    transition={{ duration: 0.7, ease: "easeInOut" }}
-                  >
-                    <img
-                      src={images[currentImageIndex].src}
-                      alt={images[currentImageIndex].title}
-                      className="max-w-full max-h-full object-contain"
-                    />
-                  </motion.div>
-                </AnimatePresence>
+  {...handlers}
+  className="relative h-[300px] lg:h-[450px] overflow-hidden rounded-lg bg-gray-900"
+>
+  {imagesLoaded ? (
+    <>
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={images[currentImageIndex].id}
+          className="absolute inset-0 w-full h-full flex items-center justify-center"
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -50 }}
+          transition={{ duration: 0.7, ease: "easeInOut" }}
+        >
+          <img
+            src={images[currentImageIndex].src}
+            alt={images[currentImageIndex].title}
+            className="max-w-full max-h-full lg:max-w-[90%] lg:max-h-[90%] object-contain"
+          />
+        </motion.div>
+      </AnimatePresence>
 
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-[1]" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-[1]" />
 
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={images[currentImageIndex].id}
-                    className="absolute bottom-0 left-0 right-0 p-6 text-white z-[2]"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    transition={{ duration: 0.7 }}
-                  >
-                    <span className="text-[#ffcc00] text-xs font-medium block mb-1">
-                      {images[currentImageIndex].date}
-                    </span>
-                    <h3 className="text-base md:text-lg font-semibold mb-1">
-                      {images[currentImageIndex].title}
-                    </h3>
-                    <p className="text-gray-200 text-sm">
-                      {images[currentImageIndex].description}
-                    </p>
-                  </motion.div>
-                </AnimatePresence>
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={images[currentImageIndex].id}
+          className="absolute bottom-0 left-0 right-0 p-6 lg:p-8 text-white z-[2]"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.7 }}
+        >
+          <span className="text-[#ffcc00] text-xs lg:text-sm font-medium block mb-1 lg:mb-2">
+            {images[currentImageIndex].date}
+          </span>
+          <h3 className="text-base md:text-lg lg:text-xl mb-1 lg:mb-2">
+            {images[currentImageIndex].title}
+          </h3>
+          <p className="text-gray-200 text-sm lg:text-base">
+            {images[currentImageIndex].description}
+          </p>
+        </motion.div>
+      </AnimatePresence>
 
-                <button
-                  onClick={prevImage}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/75 text-white text-2xl px-3 py-1 rounded-full z-10"
-                >
-                  {"<"}
-                </button>
-                <button
-                  onClick={nextImage}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/75 text-white text-2xl px-3 py-1 rounded-full z-10"
-                >
-                  {">"}
-                </button>
-              </>
-            ) : (
-              <div className="flex items-center justify-center w-full h-full">
-                <div className="w-10 h-10 border-4 border-[#ffcc00] border-t-transparent rounded-full animate-spin"></div>
-              </div>
-            )}
-          </div>
+      <button
+        onClick={prevImage}
+        className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/75 text-white text-2xl lg:text-3xl px-3 lg:px-4 py-1 lg:py-2 rounded-full z-10"
+      >
+        {"<"}
+      </button>
+      <button
+        onClick={nextImage}
+        className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/75 text-white text-2xl lg:text-3xl px-3 lg:px-4 py-1 lg:py-2 rounded-full z-10"
+      >
+        {">"}
+      </button>
+    </>
+  ) : (
+    <div className="flex items-center justify-center w-full h-full">
+      <div className="w-10 h-10 lg:w-12 lg:h-12 border-4 border-[#ffcc00] border-t-transparent rounded-full animate-spin"></div>
+    </div>
+  )}
+</div>
 
           {/* Dots indicator moved outside */}
           <div className="flex justify-center mt-4 space-x-2">

@@ -73,34 +73,42 @@ const ServicesComponent = () => {
 
   const ServiceItem = ({ service }) => (
     <div className="border-t-2 border-white">
-      <div className="py-3 md:py-5 h-[82px] flex justify-between items-center cursor-pointer" onClick={() => toggleExpand(service.id)}>
-        <h2 className="text-lg md:text-3xl font-medium tracking-tight">{service.title}</h2>
-        <div className=" p-1 md:p-2">
+    <div 
+      className="py-3 md:py-5 lg:py-7 h-[82px] lg:h-[100px] flex justify-between items-center cursor-pointer" 
+      onClick={() => toggleExpand(service.id)}
+    >
+      <h2 className="text-lg md:text-3xl lg:text-4xl tracking-tight">{service.title}</h2>
+      <div className="p-1 md:p-2 lg:p-3">
         {expandedIds[service.id] ? (
-  <Minus size={20} />
-) : (
-  <Plus size={20} />
-)}
-        </div>
-      </div>
-      
-      <AnimatePresence>
-        {expandedIds[service.id] && (
-          <motion.div
-            key={`content-${service.id}`}
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="overflow-hidden"
-          >
-            <TextAnimate animation="slideUp" by="word" as="p" className="mb-3 md:mb-5 text-sm md:text-base">
-              {service.description}
-            </TextAnimate>
-          </motion.div>
+          <Minus size={20} className="lg:w-6 lg:h-6" />
+        ) : (
+          <Plus size={20} className="lg:w-6 lg:h-6" />
         )}
-      </AnimatePresence>
+      </div>
     </div>
+    
+    <AnimatePresence>
+      {expandedIds[service.id] && (
+        <motion.div
+          key={`content-${service.id}`}
+          initial={{ height: 0, opacity: 0 }}
+          animate={{ height: "auto", opacity: 1 }}
+          exit={{ height: 0, opacity: 0 }}
+          transition={{ duration: 0.3 }}
+          className="overflow-hidden"
+        >
+          <TextAnimate 
+            animation="slideUp" 
+            by="word" 
+            as="p" 
+            className="mb-3 md:mb-5 lg:mb-7 text-sm md:text-base lg:text-lg"
+          >
+            {service.description}
+          </TextAnimate>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  </div>
   );
 
   if (!isLoaded) {
@@ -144,51 +152,51 @@ const ServicesComponent = () => {
 )}
 
 
-        {showServices && (
+{showServices && (
+  <motion.div 
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ duration: 0.8 }}
+    className="mb-8 md:mb-10 lg:mb-12 lg:mt-20"
+  >
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 md:gap-x-8 lg:gap-x-12">
+      <div>
+        {services.filter(service => leftColumnIds.includes(service.id)).map((service, index) => (
           <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8 }}
-            className="mb-8 md:mb-10"
+            key={service.id} 
+            initial={{ opacity: 0, y: 20 }} 
+            animate={{ opacity: 1, y: 0 }} 
+            transition={{ delay: 0.1 * index, duration: 0.5 }}
           >
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 md:gap-x-8">
-              <div>
-                {services.filter(service => leftColumnIds.includes(service.id)).map((service, index) => (
-                  <motion.div 
-                    key={service.id} 
-                    initial={{ opacity: 0, y: 20 }} 
-                    animate={{ opacity: 1, y: 0 }} 
-                    transition={{ delay: 0.1 * index, duration: 0.5 }}
-                  >
-                    <ServiceItem service={service} />   
-                  </motion.div>
-                ))}
-              </div>
-              
-              <div>
-                {services.filter(service => rightColumnIds.includes(service.id)).map((service, index) => (
-                  <motion.div 
-                    key={service.id} 
-                    initial={{ opacity: 0, y: 20 }} 
-                    animate={{ opacity: 1, y: 0 }} 
-                    transition={{ delay: 0.1 * index, duration: 0.5 }}
-                  >
-                    <ServiceItem service={service} />
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-            
-            <div className="relative flex w-full flex-col items-center justify-center overflow-hidden px-3 md:px-10 mt-16 md:mt-20 mb-16 md:mb-20">
-              <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-background"></div>
-              <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-background"></div>
-            </div>
-
-            <div className="px-3 md:px-8">
-              <CallToAction />
-            </div>
+            <ServiceItem service={service} />   
           </motion.div>
-        )}
+        ))}
+      </div>
+      
+      <div>
+        {services.filter(service => rightColumnIds.includes(service.id)).map((service, index) => (
+          <motion.div 
+            key={service.id} 
+            initial={{ opacity: 0, y: 20 }} 
+            animate={{ opacity: 1, y: 0 }} 
+            transition={{ delay: 0.1 * index, duration: 0.5 }}
+          >
+            <ServiceItem service={service} />
+          </motion.div>
+        ))}
+      </div>
+    </div>
+    
+    <div className="relative flex w-full flex-col items-center justify-center overflow-hidden px-3 md:px-10 lg:px-16 mt-16 md:mt-20 lg:mt-24 mb-16 md:mb-20 lg:mb-24">
+      <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-background"></div>
+      <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-background"></div>
+    </div>
+
+    <div className="px-3 md:px-8 lg:px-12">
+      <CallToAction />
+    </div>
+  </motion.div>
+)}
       </div>
     </div>
   );

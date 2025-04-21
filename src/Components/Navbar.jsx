@@ -94,85 +94,84 @@ const Navbar = () => {
 
           {/* Menu Content */}
           <div
-            className={`fixed inset-0 flex flex-col items-start pt-16 justify-center z-45 transition-opacity duration-500 ${
-              isMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"
-            }`}
-            style={{ 
-              pointerEvents: isMenuOpen ? 'auto' : 'none',
-              background: '#000', // Terra cotta/rust color like in the reference
-              padding: '0 2rem'
-            }}
+  className={`fixed inset-0 flex flex-col items-start lg:items-center pt-16 justify-center z-45 transition-opacity duration-500 ${
+    isMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"
+  }`}
+  style={{ 
+    pointerEvents: isMenuOpen ? 'auto' : 'none',
+    background: '#000',
+    padding: '0 2rem'
+  }}
+>
+  <div className="absolute top-6 right-6">
+    <button 
+      onClick={() => setIsMenuOpen(false)}
+      className="text-white hover:text-white transition-colors"
+    >
+      Close
+    </button>
+  </div>
+  
+  {/* Navigation Menu */}
+  <ul className="text-white space-y-1 text-left lg:text-center w-full lg:max-w-2xl">
+    {[
+      { to: "/", label: "HOME", delay: 0.1 },
+      { to: "/services", label: "SERVICES", delay: 0.2 },
+      { to: "/aboutus", label: "ABOUT", delay: 0.3 },
+      { to: "/contact", label: "CONTACT", delay: 0.4 },
+      { to: "/routes", label: "SEE ROUTES", delay: 0.5 },
+    ].map(({ to, label, delay }) => (
+      <li key={to}>
+        <Link
+          to={to}
+          className={`block text-6xl lg:text-7xl font-regular tracking-wide transition-all ${
+            isActive(to) ? "text-yellow-500" : "text-white"
+          }`}
+          onClick={() => setIsMenuOpen(false)}
+        >
+          <TextAnimate 
+            animation="slideUp" 
+            by="word" 
+            delay={delay}
+            className="block overflow-hidden"
           >
-            <div className="absolute top-6 right-6">
-              <button 
-                onClick={() => setIsMenuOpen(false)}
-                className="text-white hover:text-white transition-colors"
-              >
-                Close
-              </button>
-            </div>
-            
-            {/* Navigation Menu - Moved up by adjusting container padding and margin */}
-            <ul className="text-white space-y-1 text-left w-full">
-              {[
-                { to: "/", label: "HOME", delay: 0.1 },
-                { to: "/services", label: "SERVICES", delay: 0.2 },
-                { to: "/aboutus", label: "ABOUT", delay: 0.3 },
-                { to: "/contact", label: "CONTACT", delay: 0.4 },
-                { to: "/routes", label: "SEE ROUTES", delay: 0.5 },
-              ].map(({ to, label, delay }) => (
-                <li key={to}>
-                  <Link
-                    to={to}
-                    className={`block text-6xl font-regular tracking-wide transition-all ${
-                      isActive(to) ? "text-yellow-500" : "text-white"
-                    }`}
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    <TextAnimate 
-                      animation="slideUp" 
-                      by="word" 
-                      delay={delay}
-                      className="block overflow-hidden"
-                    >
-                      {label}
-                    </TextAnimate>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-            
-            {/* Contact Info - Adjusted position upward */}
-            <div
-              className={`absolute bottom-32 left-8 text-white text-sm transition-all duration-500 ${
-                isMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-5"
-              } delay-200`}
-            >
-              <div>INFO@ADCHARIOT.COM</div>
-              <div>+91 773 290 0099</div>
-            </div>
+            {label}
+          </TextAnimate>
+        </Link>
+      </li>
+    ))}
+  </ul>
+  
+  {/* Contact Info */}
+  <div
+    className={`absolute bottom-32 lg:bottom-16 left-8 lg:left-0 lg:right-0 lg:text-center text-white text-sm transition-all duration-500 ${
+      isMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-5"
+    } delay-200`}
+  >
+    <div>INFO@ADCHARIOT.COM</div>
+    <div>+91 773 290 0099</div>
+  </div>
 
-            {/* Social Icons - Adjusted position upward */}
-            <div
-              className={`absolute bottom-24 left-8 flex space-x-4 transition-all duration-500 ${
-                isMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-5"
-              } delay-500`}
-            >
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
-                <Facebook size={24} className="text-white hover:text-[#f4cc08] transition-colors" />
-              </a>
-              <a href="https://www.instagram.com/adchariot.in/" target="_blank" rel="noopener noreferrer">
-                <Instagram size={24} className="text-white hover:text-[#f4cc08] transition-colors" />
-              </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
-                <SiLinkedin size={24} className="text-white hover:text-[#f4cc08] transition-colors" />
-              </a>
-              <a href="https://x.com" target="_blank" rel="noopener noreferrer">
-  <SiX size={24} className="text-white hover:text-[#f4cc08] transition-colors" />
-</a>
-
-            </div>
-          </div>
+  {/* Social Icons */}
+  <div
+    className={`absolute bottom-24 lg:bottom-8 left-8 lg:left-0 lg:right-0 lg:flex lg:justify-center flex space-x-4 transition-all duration-500 ${
+      isMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-5"
+    } delay-500`}
+  >
+    <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+      <Facebook size={24} className="text-white hover:text-[#f4cc08] transition-colors" />
+    </a>
+    <a href="https://www.instagram.com/adchariot.in/" target="_blank" rel="noopener noreferrer">
+      <Instagram size={24} className="text-white hover:text-[#f4cc08] transition-colors" />
+    </a>
+    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+      <SiLinkedin size={24} className="text-white hover:text-[#f4cc08] transition-colors" />
+    </a>
+    <a href="https://x.com" target="_blank" rel="noopener noreferrer">
+      <SiX size={24} className="text-white hover:text-[#f4cc08] transition-colors" />
+    </a>
+  </div>
+</div>
         </div>
       </nav>
 
