@@ -180,7 +180,7 @@ const Home = () => {
       className="mt-4 md:flex md:justify-center"
     >
       <img
-        src="Images/1000014890.png"
+        src="Images/1000014890 (1).png"
         alt="3D Billboard LRD Truck"
         className="w-full h-auto md:max-w-3xl"
       />

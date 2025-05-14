@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, ChevronUp, Plus, Minus } from 'lucide-react';
+import { Plus, Minus } from 'lucide-react';
 import { TextAnimate } from "../../../Components/magicui/text-animate";
 import CallToAction from './CTA';
 

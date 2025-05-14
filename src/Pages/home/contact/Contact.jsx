@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import { PhoneCall, Mail } from "lucide-react";
-import { TypeAnimation } from "react-type-animation";
 import { TextAnimate } from "@/Components/magicui/text-animate";
 export default function Contact() {
   useEffect(() => {
