@@ -4,8 +4,16 @@ import { Marquee } from "@/Components/magicui/marquee";
 
 const partners = [   
   { name: "King Icecream", logo: "Images/Adobe Express - file (1).png", url: "https://kingicecream.com/" },   
-  { name: "Adityaa Milk", logo: "Images/Adobe Express - file (2).png", url: "https://www.adityaamilk.com/" }, 
-];  
+  { name: "Adityaa Milk", logo: "Images/Adobe Express - file (2).png", url: "https://www.adityaamilk.com/" },   
+  { name: "Tanishq", logo: "Images/tanishq.svg", url: "https://www.tanishq.co.in/" },
+  { name: "Caratlane", logo: "Images/caratlane.png", url: "https://www.caratlane.com/" },
+  { name: "Royal Ritis", logo: "Images/royal-ritis.png", url: "https://www.instagram.com/royalritisbelgaum/?hl=en" }, // URL not provided
+  { name: "Andhra Leaf", logo: "Images/andhra-leaf.png", url: "https://www.instagram.com/andhraleaf/?hl=en" },
+  { name: "Snitch", logo: "Images/snitch.webp", url: "https://www.snitch.co.in/" },
+  { name: "Inorbit Mall Hubli", logo: "Images/inorbit-mall-hubli.png", url: "https://www.inorbit.in/hubballi/" },
+  { name: "Shree Clothing (Women's Clothing)", logo: "Images/shree.png", url: "https://www.shreelifestyle.com/" }
+];
+
 
 const PartnerCard = ({ name, logo, url }) => {   
   return (     
@@ -49,11 +57,11 @@ const OurPartners = () => {
   </Marquee>
 
   {/* Second row marquee (reverse direction) */}
-  <Marquee reverse pauseOnHover className="mt-6 [--duration:15s]">
+  {/* <Marquee reverse pauseOnHover className="mt-6 [--duration:15s]">
     {partners.map((partner, index) => (
       <PartnerCard key={`row2-${index}`} {...partner} />
     ))}
-  </Marquee>
+  </Marquee> */}
 
   {/* Gradient overlays */}
   <div className="pointer-events-none absolute inset-y-0 left-0 w-1/6 lg:bg-gradient-to-r lg:from-[#f4cc08] lg:via-[#f4cc08] lg:to-transparent"></div>
