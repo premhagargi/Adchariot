@@ -9,7 +9,7 @@ const partners = [
   { name: "Caratlane", logo: "Images/caratlane.png", url: "https://www.caratlane.com/" },
   { name: "Royal Ritis", logo: "Images/royal-ritis.png", url: "https://www.instagram.com/royalritisbelgaum/?hl=en" }, // URL not provided
   { name: "Andhra Leaf", logo: "Images/andhra-leaf.png", url: "https://www.instagram.com/andhraleaf/?hl=en" },
-  { name: "Snitch", logo: "Images/snitch.webp", url: "https://www.snitch.co.in/" },
+  { name: "Snitch", logo: "Images/snitch.webp", url: "https://www.snitch.com/" },
   { name: "Inorbit Mall Hubli", logo: "Images/inorbit-mall-hubli.png", url: "https://www.inorbit.in/hubballi/" },
   { name: "Shree Clothing (Women's Clothing)", logo: "Images/shree.png", url: "https://www.shreelifestyle.com/" }
 ];
